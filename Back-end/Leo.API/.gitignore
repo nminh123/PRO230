@@ -1,0 +1,54 @@
+# Tệp nhị phân và thư mục build
+bin/
+obj/
+out/
+*.exe
+*.dll
+*.pdb
+*.app/
+*.ipa
+*.apk
+
+# Tệp cache, lock, temp
+.vscode/
+.idea/
+*.log
+*.lock
+*.vs/
+*.db
+*.tmp
+*.cache
+
+# Thư mục publish và các tệp tự sinh
+publish/
+**/app.publish/
+**/*.pubxml
+**/*.publishproj
+
+# Các tệp cấu hình người dùng
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET-specific
+wwwroot/node_modules/
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Secret settings
+appsettings.Development.json
+secrets.json
+.env
+
+# Rider (JetBrains)
+.idea/
+*.sln.iml
+
+# Không đưa lên thư viện NuGet được tải xuống
+packages/
+.nuget/
+

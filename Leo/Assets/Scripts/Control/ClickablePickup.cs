@@ -1,5 +1,5 @@
 using UnityEngine;
-using Minh.Inventories;
+using GameDevTV.Inventories;
 using InventoryExample.Control;
 
 namespace InventoryExample.Control

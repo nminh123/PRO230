@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Minh.Inventories
+namespace GameDevTV.Inventories
 {
     /// <summary>
     /// A ScriptableObject that represents any item that can be put in an

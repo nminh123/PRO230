@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Minh.Inventories
+namespace GameDevTV.Inventories
 {
     /// <summary>
     /// An inventory item that can be equipped to the player. Weapons could be a

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Minh.Inventories;
+using GameDevTV.Inventories;
 using TMPro;
 
-namespace Minh.UI.Inventories
+namespace GameDevTV.UI.Inventories
 {
     /// <summary>
     /// To be put on the icon representing an inventory item. Allows the slot to

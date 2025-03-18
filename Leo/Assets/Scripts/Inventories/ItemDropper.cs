@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using Minh.Saving;
+using GameDevTV.Saving;
 
-namespace Minh.Inventories
+namespace GameDevTV.Inventories
 {
     /// <summary>
     /// To be placed on anything that wishes to drop pickups into the world.

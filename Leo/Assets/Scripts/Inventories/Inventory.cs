@@ -1,8 +1,8 @@
 ﻿using System;
 using UnityEngine;
-using Minh.Saving;
+using GameDevTV.Saving;
 
-namespace Minh.Inventories
+namespace GameDevTV.Inventories
 {
     /// <summary>
     /// Provides storage for the player inventory. A configurable number of

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Minh.Core.UI.Dragging;
-using Minh.Inventories;
+using GameDevTV.Core.UI.Dragging;
+using GameDevTV.Inventories;
 
-namespace Minh.UI.Inventories
+namespace GameDevTV.UI.Inventories
 {
     /// <summary>
     /// An slot for the players equipment.

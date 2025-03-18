@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Minh.Core.UI.Dragging;
-using Minh.Inventories;
+using GameDevTV.Core.UI.Dragging;
+using GameDevTV.Inventories;
 
-namespace Minh.UI.Inventories
+namespace GameDevTV.UI.Inventories
 {
     /// <summary>
     /// To be placed on icons representing the item in a slot. Allows the item

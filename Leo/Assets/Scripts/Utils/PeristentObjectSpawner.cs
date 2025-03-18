@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Minh.Utils
+namespace MinhHandSome.Utils
 {
     /// <summary>
     /// An alternative to using the singleton pattern. Will handle spawning a

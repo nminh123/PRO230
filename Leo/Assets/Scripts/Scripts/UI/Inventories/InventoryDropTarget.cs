@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Minh.Core.UI.Dragging;
-using Minh.Inventories;
+using MinhHandSome.Core.UI.Dragging;
+using MinhHandSome.Inventories;
 
-namespace Minh.UI.Inventories
+namespace MinhHandSome.UI.Inventories
 {
     /// <summary>
     /// Handles spawning pickups when item dropped into the world.

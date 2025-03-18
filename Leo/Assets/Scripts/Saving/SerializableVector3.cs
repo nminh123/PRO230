@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Minh.Saving
+namespace MinhHandSome.Saving
 {
     /// <summary>
     /// A `System.Serializable` wrapper for the `Vector3` class.

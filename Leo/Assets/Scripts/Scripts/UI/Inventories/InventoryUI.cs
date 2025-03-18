@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Minh.Inventories;
+using MinhHandSome.Inventories;
 
-namespace Minh.UI.Inventories
+namespace MinhHandSome.UI.Inventories
 {
     /// <summary>
     /// To be placed on the root of the inventory UI. Handles spawning all the

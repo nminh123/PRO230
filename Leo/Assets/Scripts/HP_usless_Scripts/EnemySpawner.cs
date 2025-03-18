@@ -1,13 +1,15 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
+using System;
 using System.Collections.Generic;
-using UnityEngine;
+using TMPro;
+using WorldTime; // Thêm namespace để sử dụng hệ thống thời gian
 
 [System.Serializable]
 public class Wave
 {
     public List<EnemySpawnInfo> enemies = new List<EnemySpawnInfo>();
 }
-
 
 [System.Serializable]
 public class EnemySpawnInfo
@@ -19,40 +21,62 @@ public class EnemySpawnInfo
 public class EnemySpawner : MonoBehaviour
 {
     [Header("Spawner Settings")]
-    public List<Wave> waves; 
+    public List<Wave> waves;
     public float spawnRadius = 10f;
-    public float waveDelay = 5f;
+    public worldtime worldTime; // Tham chiếu đến hệ thống thời gian
+    public TMP_Text waveNotificationText; // Thông báo trên Canvas
+    public int spawnHour = 18; // Giờ cố định để spawn wave
+    public int spawnMinute = 0; // Phút cố định để spawn wave
 
     private int currentWaveIndex = 0;
     private int activeEnemies = 0;
+    private bool canSpawn = false;
 
     void Start()
     {
-        StartCoroutine(SpawnWave());
+        worldTime.WorldTimeChanged += OnWorldTimeChanged;
+        waveNotificationText.text = "";
+    }
+
+    private void OnDestroy()
+    {
+        worldTime.WorldTimeChanged -= OnWorldTimeChanged;
+    }
+
+    private void OnWorldTimeChanged(object sender, TimeSpan currentTime)
+    {
+        if (currentWaveIndex < waves.Count)
+        {
+            if (currentTime.Hours == spawnHour && currentTime.Minutes == spawnMinute && !canSpawn)
+            {
+                canSpawn = true;
+                StartCoroutine(SpawnWave());
+            }
+        }
     }
 
     IEnumerator SpawnWave()
     {
-        while (currentWaveIndex < waves.Count)
+        if (!canSpawn) yield break;
+
+        waveNotificationText.text = "Wave " + (currentWaveIndex + 1) + " bắt đầu!";
+        Debug.Log("Wave " + (currentWaveIndex + 1) + " bắt đầu!");
+
+        foreach (var enemyInfo in waves[currentWaveIndex].enemies)
         {
-            yield return new WaitForSeconds(waveDelay); 
-            Debug.Log("Wave " + (currentWaveIndex + 1) + " bắt đầu!");
-
-            foreach (var enemyInfo in waves[currentWaveIndex].enemies)
+            for (int i = 0; i < enemyInfo.count; i++)
             {
-                for (int i = 0; i < enemyInfo.count; i++)
-                {
-                    SpawnEnemy(enemyInfo.enemyPrefab);
-                }
+                SpawnEnemy(enemyInfo.enemyPrefab);
             }
-
-            currentWaveIndex++;
         }
+
+        currentWaveIndex++;
+        canSpawn = false;
     }
 
     void SpawnEnemy(GameObject enemyPrefab)
     {
-        Vector2 spawnPosition = (Vector2)transform.position + (Random.insideUnitCircle.normalized * spawnRadius);
+        Vector2 spawnPosition = (Vector2)transform.position + (UnityEngine.Random.insideUnitCircle.normalized * spawnRadius);
         GameObject newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
 
         EnemyAI enemyAI = newEnemy.GetComponent<EnemyAI>();
@@ -63,13 +87,12 @@ public class EnemySpawner : MonoBehaviour
         activeEnemies++;
     }
 
-    void OnEnemyDeath(int reward)
+    void OnEnemyDeath()
     {
-
+        activeEnemies--;
         if (activeEnemies <= 0 && currentWaveIndex < waves.Count)
         {
             Debug.Log("Tất cả quái đã bị tiêu diệt! Chuẩn bị wave tiếp theo...");
-            StartCoroutine(SpawnWave());
         }
     }
 }

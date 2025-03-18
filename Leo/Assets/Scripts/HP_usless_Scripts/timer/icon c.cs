@@ -15,7 +15,7 @@ namespace WorldTime
         private List<Schedule> _schedule;
 
         [SerializeField]
-        private Image _iconImage; // Dùng Image UI thay vì SpriteRenderer
+        private Image _iconImage;
 
         [SerializeField]
         private AudioSource _audioSource;
@@ -40,7 +40,7 @@ namespace WorldTime
             {
                 if (_iconImage != null && schedule.Icon != null)
                 {
-                    _iconImage.sprite = schedule.Icon; // Thay đổi icon trên UI
+                    _iconImage.sprite = schedule.Icon; 
                 }
 
                 if (_audioSource != null && schedule.Sound != null)

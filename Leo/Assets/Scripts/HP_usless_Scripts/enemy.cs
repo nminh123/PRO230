@@ -16,6 +16,8 @@ public class EnemyAI : MonoBehaviour
     [Header("Reward Settings")]
     public RewardItem[] rewards; // Danh sách phần thưởng có thể spawn
 
+    public event Action OnDeath;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -69,7 +71,6 @@ public class EnemyAI : MonoBehaviour
         canAttack = true;
     }
 
-    public event Action<int> OnDeath;
 
     public void TakeDamage(int damage)
     {
@@ -82,7 +83,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Die()
     {
-        OnDeath?.Invoke(0);
+        OnDeath?.Invoke();
         DropReward();
         Destroy(gameObject);
     }

@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using GameDevTV.Inventories;
+using MinhHandSome.Inventories;
 
-namespace GameDevTV.UI.Inventories
+namespace MinhHandSome.UI.Inventories
 {
     /// <summary>
     /// To be placed on the root of the inventory UI. Handles spawning all the

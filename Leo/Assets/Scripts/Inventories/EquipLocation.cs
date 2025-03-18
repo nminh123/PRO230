@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameDevTV.Inventories
+namespace MinhHandSome.Inventories
 {
     /// <summary>
     /// Locations on the players body where items can be equipped.

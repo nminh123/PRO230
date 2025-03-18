@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace GameDevTV.Inventories
+namespace MinhHandSome.Inventories
 {
     /// <summary>
     /// An inventory item that can be placed in the action bar and "Used".
@@ -10,7 +10,7 @@ namespace GameDevTV.Inventories
     /// This class should be used as a base. Subclasses must implement the `Use`
     /// method.
     /// </remarks>
-    [CreateAssetMenu(menuName = ("GameDevTV/GameDevTV.UI.InventorySystem/Action Item"))]
+    [CreateAssetMenu(menuName = ("MinhHandSome/MinhHandSome.UI.InventorySystem/Action Item"))]
     public class ActionItem : InventoryItem
     {
         // CONFIG DATA

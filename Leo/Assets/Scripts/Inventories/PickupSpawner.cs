@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using GameDevTV.Saving;
+using MinhHandSome.Saving;
 
-namespace GameDevTV.Inventories
+namespace MinhHandSome.Inventories
 {
     /// <summary>
     /// Spawns pickups that should exist on first load in a level. This

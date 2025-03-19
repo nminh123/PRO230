@@ -1,4 +1,4 @@
-﻿namespace MinhHandSome.Utils
+﻿namespace Leo.Utils
 {
     /// <summary>
     /// Container class that wraps a value and ensures initialisation is 

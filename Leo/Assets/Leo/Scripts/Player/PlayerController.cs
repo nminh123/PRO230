@@ -1,8 +1,9 @@
-using Global;
 using UnityEngine;
-using FarmingGame.Planting.Block;
+using Leo.Planting.Block;
+using Leo.Planting.Grid;
+using Leo.UI;
 
-namespace FarmingGame.Player
+namespace Leo.Player
 {
     public class PlayerController : MonoBehaviour
     {

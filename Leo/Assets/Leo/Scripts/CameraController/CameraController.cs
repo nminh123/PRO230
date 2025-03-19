@@ -1,7 +1,7 @@
 using UnityEngine;
-using FarmingGame.Player;
+using Leo.Player;
 
-namespace FarmingGame.CameraController
+namespace Leo.CameraController
 {
     //Có thể sửa class này!!.
     public class CameraController : MonoBehaviour

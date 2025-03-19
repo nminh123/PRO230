@@ -21,10 +21,6 @@ namespace Leo
 
         [Header("Player Settings")]
         public      float       gPLAYER_SPEED                  ;
-        
-        [Header("SetUp Color Opacity")]
-        public      float       gCOLOR_BA           =       .5f;
-        public      float       gCOLOR_AA           =       1f;
 
         [Header("Block Indicator")]
         public      float       gToolRange                      ;

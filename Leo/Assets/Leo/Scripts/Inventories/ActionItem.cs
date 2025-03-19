@@ -10,7 +10,7 @@ namespace Leo.Inventories
     /// This class should be used as a base. Subclasses must implement the `Use`
     /// method.
     /// </remarks>
-    [CreateAssetMenu(menuName = ("MinhHandSome/MinhHandSome.UI.InventorySystem/Action Item"))]
+    [CreateAssetMenu(menuName = ("ScriptableObject/Leo.UI.InventorySystem/Action Item"))]
     public class ActionItem : InventoryItem
     {
         // CONFIG DATA

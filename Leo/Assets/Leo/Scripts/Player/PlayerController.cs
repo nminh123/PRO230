@@ -9,17 +9,17 @@ namespace Leo.Player
     {
         public static PlayerController instance;
         Constants consts;
-        float mPlayerSpeed;
-        Rigidbody2D mRigidbody;
-        CapsuleCollider2D mCollider;
-        Animator mAnimator;
+        float playerSpeed;
+        Rigidbody2D rb;
+        CapsuleCollider2D collision;
+        Animator animator;
         bool isMoving = false;
         bool hasSwitchedTool = false;
-        Transform mToolIndicator;
-        float mToolRange;
-        bool mIsFaded = false;
-        public bool isFaded => mIsFaded;
-        public ToolType mCurrentTool;
+        Transform toolIndicator;
+        float toolRange;
+        bool isFaded = false;
+        public bool IsFaded => isFaded;
+        public ToolType currentTool;
 
         void Awake()
         {
@@ -34,19 +34,19 @@ namespace Leo.Player
             }
 
 
-            mRigidbody = GetComponent<Rigidbody2D>();
-            mCollider = GetComponent<CapsuleCollider2D>();
-            mAnimator = GetComponent<Animator>();
+            rb = GetComponent<Rigidbody2D>();
+            collision = GetComponent<CapsuleCollider2D>();
+            animator = GetComponent<Animator>();
             consts = FindFirstObjectByType<Constants>();
-            mToolIndicator = GameObject.FindGameObjectWithTag("Red_toolIndicator").transform;
+            toolIndicator = GameObject.FindGameObjectWithTag("Red_toolIndicator").transform;
         }
 
         void Start()
         {
-            mPlayerSpeed = consts.gPLAYER_SPEED;
-            mToolRange = consts.gToolRange;
+            playerSpeed = consts.gPLAYER_SPEED;
+            toolRange = consts.gToolRange;
 
-            mCurrentTool = ToolType.wateringCan;
+            currentTool = ToolType.wateringCan;
         }
 
         void Update()
@@ -67,23 +67,23 @@ namespace Leo.Player
         void ToolIndicatorControl()
         {
             Vector3 mousePosition = Input.mousePosition;
-            mToolIndicator.position = Camera.main.ScreenToWorldPoint(mousePosition);
-            mToolIndicator.position = new Vector3(mToolIndicator.position.x, mToolIndicator.position.y, 0f);
+            toolIndicator.position = Camera.main.ScreenToWorldPoint(mousePosition);
+            toolIndicator.position = new Vector3(toolIndicator.position.x, toolIndicator.position.y, 0f);
             AdjustToolIndicator();
-            mToolIndicator.position = new Vector3(
-                Mathf.FloorToInt(mToolIndicator.position.x) + .5f,
-                Mathf.FloorToInt(mToolIndicator.position.y) + .5f,
+            toolIndicator.position = new Vector3(
+                Mathf.FloorToInt(toolIndicator.position.x) + .5f,
+                Mathf.FloorToInt(toolIndicator.position.y) + .5f,
                 0f);
         }
 
         void AdjustToolIndicator()
         {
-            if (Vector3.Distance(mToolIndicator.position, transform.position) > mToolRange)
+            if (Vector3.Distance(toolIndicator.position, transform.position) > toolRange)
             {
-                Vector2 direction = mToolIndicator.position - transform.position;
+                Vector2 direction = toolIndicator.position - transform.position;
 
-                direction = direction.normalized * mToolRange;
-                mToolIndicator.position = transform.position + new Vector3(direction.x, direction.y, 0f);
+                direction = direction.normalized * toolRange;
+                toolIndicator.position = transform.position + new Vector3(direction.x, direction.y, 0f);
             }
         }
 
@@ -103,18 +103,18 @@ namespace Leo.Player
             {
                 input = input.normalized;
             }
-            mRigidbody.velocity = input * mPlayerSpeed;
+            rb.velocity = input * playerSpeed;
             isMoving = true;
-            mAnimator.SetBool("isMoving", isMoving);
+            animator.SetBool("isMoving", isMoving);
             if (input.magnitude == 0)
             {
                 isMoving = false;
-                mAnimator.SetBool("isMoving", isMoving);
+                animator.SetBool("isMoving", isMoving);
             }
             else
             {
                 isMoving = true;
-                mAnimator.SetBool("isMoving", isMoving);
+                animator.SetBool("isMoving", isMoving);
             }
             // }
         }
@@ -127,36 +127,37 @@ namespace Leo.Player
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 //Defaul speed = 4 || After Shift speed = 6
-                mPlayerSpeed = consts.gPLAYER_SPEED * 3;
-                mAnimator.SetFloat("speed", 1);
+                playerSpeed = consts.gPLAYER_SPEED * 3;
+                animator.SetFloat("speed", 1);
             }
             if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 //Defaul speed = 4 || After Shift speed = 6
-                mPlayerSpeed = consts.gPLAYER_SPEED;
-                mAnimator.SetFloat("speed", .5f);
+                playerSpeed = consts.gPLAYER_SPEED;
+                animator.SetFloat("speed", .5f);
             }
         }
 
         void LiftFace()
         {
-            if (mRigidbody.velocity.x < 0)
+            if (rb.velocity.x < 0)
             {
                 transform.localScale = new Vector3(1, 1, 0);
-                mAnimator.SetFloat("horizontal", -1);
+                animator.SetFloat("horizontal", -1);
             }
-            if (mRigidbody.velocity.x > 0)
+            if (rb.velocity.x > 0)
             {
                 transform.localScale = new Vector3(-1, 1, 0);
-                mAnimator.SetFloat("horizontal", 1);
+                animator.SetFloat("horizontal", 1);
             }
         }
 
+#region Can be delete stuff
         void SwitchToolTypeByTabKey()
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                mCurrentTool += 1;
+                currentTool += 1;
                 ChangeStateTool();
                 hasSwitchedTool = true;
             }
@@ -164,21 +165,23 @@ namespace Leo.Player
 
         void ChangeStateTool()
         {
-            if ((int)mCurrentTool >= 4)
+            if ((int)currentTool >= 4)
             {
-                mCurrentTool = ToolType.plough;
+                currentTool = ToolType.plough;
             }
         }
+#endregion
 
+        //Chỉnh sửa lại nếu player đang chọn trang bị đó thì mới được sử dụng amin đó.
         void UseTool()
         {
             GrowBlock block = null;
             // block = FindFirstObjectByType<GrowBlock>();
             //                block.PloughSoil();
-            block = GridController.instance.GetBlock(mToolIndicator.position.x + .5f, mToolIndicator.position.y + .5f);
+            block = GridController.instance.GetBlock(toolIndicator.position.x + .5f, toolIndicator.position.y + .5f);
             if (block != null)
             {
-                switch (mCurrentTool)
+                switch (currentTool)
                 {
                     case ToolType.plough:
                         if (Input.GetKeyDown(KeyCode.E))
@@ -208,35 +211,36 @@ namespace Leo.Player
             }
         }
 
+        //TODO: Đổi sang logic của UI Inventory
         void SwitchToolTypeByNumberKey()
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                mCurrentTool = ToolType.plough;
+                currentTool = ToolType.plough;
 
                 hasSwitchedTool = true;
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                mCurrentTool = ToolType.wateringCan;
+                currentTool = ToolType.wateringCan;
 
                 hasSwitchedTool = true;
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                mCurrentTool = ToolType.seeds;
+                currentTool = ToolType.seeds;
 
                 hasSwitchedTool = true;
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
-                mCurrentTool = ToolType.basket;
+                currentTool = ToolType.basket;
 
                 hasSwitchedTool = true;
             }
             if (hasSwitchedTool == true)
             {
-                UIController.instance.SwitchTool((int)mCurrentTool);
+                UIController.instance.SwitchTool((int)currentTool);
             }
         }
 
@@ -246,12 +250,12 @@ namespace Leo.Player
             if (Input.GetKeyDown(KeyCode.E))
             {
                 isPloughing = true;
-                mAnimator.SetBool("isPlough", isPloughing);
+                animator.SetBool("isPlough", isPloughing);
             }
             else if (Input.GetKeyUp(KeyCode.E))
             {
                 isPloughing = false;
-                mAnimator.SetBool("isPlough", isPloughing);
+                animator.SetBool("isPlough", isPloughing);
             }
         }
 
@@ -261,12 +265,12 @@ namespace Leo.Player
             if (Input.GetKeyDown(KeyCode.R))
             {
                 isWatering = true;
-                mAnimator.SetBool("isWatering", isWatering);
+                animator.SetBool("isWatering", isWatering);
             }
             else if (Input.GetKeyUp(KeyCode.R))
             {
                 isWatering = false;
-                mAnimator.SetBool("isWatering", isWatering);
+                animator.SetBool("isWatering", isWatering);
             }
         }
 
@@ -274,19 +278,19 @@ namespace Leo.Player
         void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Decor"))
-                mIsFaded = true;
+                isFaded = true;
         }
 
         void OnTriggerStay2D(Collider2D other)
         {
             if (other.CompareTag("Decor"))
-                mIsFaded = true;
+                isFaded = true;
         }
 
         void OnTriggerExit2D(Collider2D other)
         {
             if (other.CompareTag("Decor"))
-                mIsFaded = false;
+                isFaded = false;
         }
         #endregion
         void OnCollisionEnter2D(Collision2D other)

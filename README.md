@@ -1,2 +1,2 @@
 # GAM302
-Nhóm 2: Game Online
+Dự án Game Online && Dự án tốt nghiệp

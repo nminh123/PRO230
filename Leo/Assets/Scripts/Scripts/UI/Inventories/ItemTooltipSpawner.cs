@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Minh.Core.UI.Tooltips;
+using MinhHandSome.Core.UI.Tooltips;
 
-namespace Minh.UI.Inventories
+namespace MinhHandSome.UI.Inventories
 {
     /// <summary>
     /// To be placed on a UI slot to spawn and show the correct item tooltip.

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Minh.Saving
+namespace MinhHandSome.Saving
 {
     /// <summary>
     /// To be placed on any GameObject that has ISaveable components that

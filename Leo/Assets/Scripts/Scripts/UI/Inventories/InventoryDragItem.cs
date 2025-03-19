@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Minh.Core.UI.Dragging;
-using Minh.Inventories;
+using MinhHandSome.Core.UI.Dragging;
+using MinhHandSome.Inventories;
 
-namespace Minh.UI.Inventories
+namespace MinhHandSome.UI.Inventories
 {
     /// <summary>
     /// To be placed on icons representing the item in a slot. Allows the item

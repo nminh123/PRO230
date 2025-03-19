@@ -1,4 +1,4 @@
-﻿namespace Minh.Utils
+﻿namespace MinhHandSome.Utils
 {
     /// <summary>
     /// Container class that wraps a value and ensures initialisation is 

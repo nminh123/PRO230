@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Minh.Core.UI.Dragging
+namespace MinhHandSome.Core.UI.Dragging
 {
     /// <summary>
     /// Components that implement this interfaces can act as the destination for

@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Decor
+  - door
+  - Ground
+  - Red_toolIndicator
   layers:
   - Default
   - TransparentFX
@@ -40,4 +44,37 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Base
+    uniqueID: 951199107
+    locked: 0
+  - name: Enviroment
+    uniqueID: 1991973873
+    locked: 0
+  - name: GrowthBlock
+    uniqueID: 3367937423
+    locked: 0
+  - name: Crops
+    uniqueID: 2799831813
+    locked: 0
+  - name: Dirt_font_house
+    uniqueID: 2244406517
+    locked: 0
+  - name: House
+    uniqueID: 933054731
+    locked: 0
+  - name: Thing_font_house
+    uniqueID: 2427130197
+    locked: 0
+  - name: Player
+    uniqueID: 81013255
+    locked: 0
+  - name: Decoration1
+    uniqueID: 1626891953
+    locked: 0
+  - name: Flora
+    uniqueID: 1569252111
+    locked: 0
+  - name: Canvas (final layer)
+    uniqueID: 617469981
     locked: 0

@@ -1,4 +1,4 @@
-namespace Global
+namespace Leo
 {
     public enum GrowthStage
     {
@@ -16,5 +16,20 @@ namespace Global
         wateringCan,
         seeds,
         basket
+    }
+
+    /// <summary>
+    /// Locations on the players body where items can be equipped.
+    /// </summary>
+    public enum EquipLocation
+    {
+        Helmet,
+        Necklace,
+        Body,
+        Trousers,
+        Boots,
+        Weapon,
+        Shield,
+        Gloves
     }
 }

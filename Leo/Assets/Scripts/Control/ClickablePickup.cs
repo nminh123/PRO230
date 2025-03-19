@@ -1,5 +1,5 @@
 using UnityEngine;
-using MinhHandSome.Inventories;
+using Leo.Inventories;
 using InventoryExample.Control;
 
 namespace InventoryExample.Control

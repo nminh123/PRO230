@@ -1,8 +1,12 @@
 using System.Collections.Generic;
 using System;
+using Leo.Planting.Block;
 
-[Serializable]
-public class InfoRow
+namespace Leo.Planting.Grid
 {
-    public List<BlockInfo> blocks = new List<BlockInfo>();
+    [Serializable]
+    public class InfoRow
+    {
+        public List<BlockInfo> blocks = new List<BlockInfo>();
+    }
 }

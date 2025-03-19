@@ -1,11 +1,12 @@
 using System;
-using UnityEngine;
-using Global;
-using FarmingGame.Planting.Block;
+using Leo;
 
-[Serializable]
-public class BlockInfo
+namespace Leo.Planting.Block
 {
-    public bool isWatered;
-    public GrowthStage currentStage;
+    [Serializable]
+    public class BlockInfo
+    {
+        public bool isWatered;
+        public GrowthStage currentStage;
+    }
 }

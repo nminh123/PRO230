@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Global
+namespace Leo
 {
     public class Constants : MonoBehaviour
     {

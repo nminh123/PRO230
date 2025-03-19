@@ -1,8 +1,11 @@
 using System.Collections.Generic;
-using FarmingGame.Planting.Block;
+using Leo.Planting.Block;
 
-[System.Serializable]
-public class BlockRow
+namespace Leo.Planting.Grid
 {
-    public List<GrowBlock> blocks = new List<GrowBlock>();
+    [System.Serializable]
+    public class BlockRow
+    {
+        public List<GrowBlock> blocks = new List<GrowBlock>();
+    }
 }

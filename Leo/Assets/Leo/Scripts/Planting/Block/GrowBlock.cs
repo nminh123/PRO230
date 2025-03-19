@@ -1,7 +1,7 @@
-using Global;
+using Leo.Planting.Grid;
 using UnityEngine;
 
-namespace FarmingGame.Planting.Block
+namespace Leo.Planting.Block
 {
     public class GrowBlock : MonoBehaviour
     {

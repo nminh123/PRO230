@@ -22,15 +22,16 @@ namespace Fin.Photon
         {
             if (!photonView.IsMine) return;
 
+            CheckInput();
+        }
+        private void CheckInput()
+        {
             horizontal = Input.GetAxisRaw("Horizontal");
             vertical = Input.GetAxisRaw("Vertical");
 
             if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttack)
-            {
                 ChangeState(State.Attack);
-            }
         }
-
         protected override void FSMFixedUpdate()
         {
             if (!photonView.IsMine) return;

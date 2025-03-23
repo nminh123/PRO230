@@ -24,7 +24,6 @@ namespace Fin.Photon
             createRoomBtn.onClick.AddListener(CreateRoom);
             joinRoomBtn.onClick.AddListener(JoinRoom);
         }
-
         private void CreateRoom()
         {
             RoomOptions roomOptions = new RoomOptions();

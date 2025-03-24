@@ -75,7 +75,7 @@ namespace Fin.Photon
                 SetZeroVelocity();
             }
 
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > .769f)
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > .8f)
             {
                 ChangeState(State.Idle);
                 SetVelocity(horizontal,vertical,speed);

@@ -55,9 +55,7 @@ namespace Fin.Photon
             PlayAnimation(Tag.IDLE);
 
             if (Mathf.Abs(horizontal) > Mathf.Epsilon || Mathf.Abs(vertical) > Mathf.Epsilon)
-            {
                 ChangeState(State.Run);
-            }
         }
 
         private void RunState()
@@ -66,19 +64,18 @@ namespace Fin.Photon
             SetVelocity(horizontal, vertical, speed);
 
             if (Mathf.Abs(horizontal) <= Mathf.Epsilon && Mathf.Abs(vertical) <= Mathf.Epsilon)
-            {
                 ChangeState(State.Idle);
-            }
+
         }
         private void AttackState()
         {
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            if (!anim.GetCurrentAnimatorStateInfo(0).IsName(Tag.ATTACK))
             {
                 PlayAnimation(Tag.ATTACK);
                 SetZeroVelocity();
             }
 
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > .9f)
+            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > .769f)
             {
                 ChangeState(State.Idle);
                 SetVelocity(horizontal,vertical,speed);

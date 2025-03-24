@@ -44,10 +44,10 @@ namespace Fin.Photon
 
         private void UpdateHealthBar()
         {
-            float healthPercentage = currentHealth / maxHealth;
-            StartCoroutine(SmoothHealthBar(healthPercentage));
+            float health = currentHealth / maxHealth;
+            StartCoroutine(SmoothHealthBar(health));
 
-            if (healthPercentage < 0.3f)
+            if (health < 0.3f)
                 fill.color = Color.Lerp(Color.red, Color.white, Mathf.PingPong(Time.time * 2, 1));
             else
                 fill.color = Color.green;

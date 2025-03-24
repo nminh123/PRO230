@@ -14,6 +14,7 @@ namespace Fin.Photon
 
         public enum State { None, Idle, Run , Attack}
 
+        [SerializeField] private GameObject flipGui;
         protected virtual void Init() { }
         protected virtual void FSMUpdate() { }
         protected virtual void FSMFixedUpdate() { }
@@ -58,6 +59,7 @@ namespace Fin.Photon
             Vector2 moveDir = new Vector2(x, y).normalized;
             rb.velocity = moveDir * speed;
             Flip(x);
+            FlipGUI(x);
         }
 
         protected virtual void SetZeroVelocity()
@@ -75,6 +77,13 @@ namespace Fin.Photon
             if (Mathf.Abs(x) > Mathf.Epsilon)
             {
                 transform.localScale = new Vector3(Mathf.Sign(x), 1, 1);
+            }
+        }
+        private void FlipGUI(float x)
+        {
+            if (Mathf.Abs(x) > Mathf.Epsilon)
+            {
+                flipGui.transform.localScale = new Vector3(Mathf.Sign(x), 1, 1);
             }
         }
     }

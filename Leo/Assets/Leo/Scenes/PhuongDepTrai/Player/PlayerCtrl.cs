@@ -7,11 +7,12 @@ namespace Fin.Photon
     public class PlayerCtrl : FinalStateMachine
     {
         [SerializeField] private float speed = 10f;
-
+        [SerializeField] private PlayerStats playerStats;
         private float horizontal;
         private float vertical;
 
         private bool isAttack = false;
+        private bool isDie = false;
         protected override void Init()
         {
             if (!photonView.IsMine) return;
@@ -22,6 +23,8 @@ namespace Fin.Photon
         {
             if (!photonView.IsMine) return;
 
+            if(playerStats.CurrentHealth <= 0 && !isDie)
+                ChangeState(State.Die);
             CheckInput();
         }
         private void CheckInput()
@@ -47,11 +50,15 @@ namespace Fin.Photon
                 case State.Attack:
                     AttackState();
                     break;
+                case State.Die:
+                    DieState();
+                    break;
             }
         }
 
         private void IdleState()
         {
+            if (isDie) return;
             PlayAnimation(Tag.IDLE);
 
             if (Mathf.Abs(horizontal) > Mathf.Epsilon || Mathf.Abs(vertical) > Mathf.Epsilon)
@@ -60,6 +67,7 @@ namespace Fin.Photon
 
         private void RunState()
         {
+            if (isDie) return;
             PlayAnimation(Tag.RUN);
             SetVelocity(horizontal, vertical, speed);
 
@@ -69,6 +77,7 @@ namespace Fin.Photon
         }
         private void AttackState()
         {
+            if(isDie) return;
             if (!anim.GetCurrentAnimatorStateInfo(0).IsName(Tag.ATTACK))
             {
                 PlayAnimation(Tag.ATTACK);
@@ -80,7 +89,16 @@ namespace Fin.Photon
                 ChangeState(State.Idle);
                 SetVelocity(horizontal,vertical,speed);
             }
-
+        }
+        private void DieState()
+        {
+            if(playerStats.CurrentHealth <= 0)
+            {
+                PlayAnimation(Tag.DIE);
+                isDie = true;
+            }
+            else
+                isDie = false;
         }
     }
 }

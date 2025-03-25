@@ -12,7 +12,7 @@ namespace Fin.Photon
 
         public State currentState = State.None;
 
-        public enum State { None, Idle, Run , Attack}
+        public enum State { None, Idle, Run, Attack, Die }
 
         [SerializeField] private GameObject flipGui;
         protected virtual void Init() { }

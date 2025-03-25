@@ -13,6 +13,7 @@ namespace Fin.Photon
         [SerializeField] protected float currentHealth;
         [SerializeField] protected Image fill;
 
+        public float Maxhealth => maxHealth;
         public float CurrentHealth => currentHealth;
 
         protected virtual void Start()

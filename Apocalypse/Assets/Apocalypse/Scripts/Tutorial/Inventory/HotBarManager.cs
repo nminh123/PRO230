@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 namespace Game.Tutorial
 {
@@ -13,9 +12,19 @@ namespace Game.Tutorial
 
         private int selectedSlot = -1;
 
+        public ItemSO[] itemSOs;
+
         private void Awake()
         {
             instance = this;
+        }
+
+        private void Start()
+        {
+            foreach (var item in itemSOs)
+            {
+                AddItem(item);
+            }
         }
 
         private void Update()
@@ -81,7 +90,7 @@ namespace Game.Tutorial
 
         public void ChangeSelectedSlotInMobile(int newValue)
         {
-            if(newValue > 8)
+            if (newValue > 8)
                 return;
 
             ChangeSelectedSlotInPC(newValue);

@@ -147,19 +147,27 @@ namespace Game.Tutorial
             AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
 
             ItemSO selectedItem = HotBarManager.instance.GetSelectedItem();
-            if (selectedItem == null)
+            if (selectedItem == null || string.IsNullOrEmpty(selectedItem.action.ToString()))
             {
                 ChangeState(State.Idle);
                 return;
             }
 
-            // tang stats
+            // Kiểm tra xem action này có hợp lệ (có animation tương ứng hay không)
+            string newTool = selectedItem.action.ToString();
+
+            // Nếu không phải là công cụ hoặc vũ khí thì không làm gì cả
+            if (newTool == "None" || !anim.HasState(0, Animator.StringToHash(newTool)))
+            {
+                ChangeState(State.Idle);
+                return;
+            }
+
+            // Nếu là item mới, áp dụng stats
             if (selectedItem != currentSelectedItem)
             {
                 ApplyItemStats(selectedItem);
             }
-
-            string newTool = selectedItem.action.ToString();
 
             if (!stateInfo.IsName(newTool))
             {

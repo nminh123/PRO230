@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 namespace Game.Tutorial
 {
@@ -81,7 +80,7 @@ namespace Game.Tutorial
 
         public void ChangeSelectedSlotInMobile(int newValue)
         {
-            if(newValue > 8)
+            if (newValue > 8)
                 return;
 
             ChangeSelectedSlotInPC(newValue);

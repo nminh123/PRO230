@@ -12,9 +12,19 @@ namespace Game.Tutorial
 
         private int selectedSlot = -1;
 
+        public ItemSO[] itemSOs;
+
         private void Awake()
         {
             instance = this;
+        }
+
+        private void Start()
+        {
+            foreach (var item in itemSOs)
+            {
+                AddItem(item);
+            }
         }
 
         private void Update()

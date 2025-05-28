@@ -27,6 +27,9 @@ namespace Game.Tutorial
         [Header("Chi Mang")]
         public float tiLeChiMang;
         public float stChiMang;
+
+        public bool IsTool => action == ActionType.Axe || action == ActionType.Mining;
+
     }
     public enum ItemType
     {

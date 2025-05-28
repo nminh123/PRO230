@@ -11,13 +11,13 @@ namespace Game.Tutorial
 
         private void Start()
         {
-            DeSelect();
+            Deselect();
         }
         public void Select()
         {
             image.color = selectedColor;
         }
-        public void DeSelect()
+        public void Deselect()
         {
             image.color = notselectedColor;
         }

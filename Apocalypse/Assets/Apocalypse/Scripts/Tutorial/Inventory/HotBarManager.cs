@@ -7,7 +7,7 @@ namespace Game.Tutorial
     {
         public static HotBarManager instance;
 
-        public HotBarSlot[] hotBarSlots;
+        public HotBarSlot[] hotBarSlots; //Todo: Check this shit -> iterator this array
         public GameObject hotBarItemPrefab;
 
         private int selectedSlot = -1;
@@ -82,7 +82,7 @@ namespace Game.Tutorial
         private void ChangeSelectedSlotInPC(int newValue)
         {
             if (selectedSlot >= 0)
-                hotBarSlots[selectedSlot].DeSelect();
+                hotBarSlots[selectedSlot].Deselect();
 
             hotBarSlots[newValue].Select();
             selectedSlot = newValue;
@@ -95,6 +95,7 @@ namespace Game.Tutorial
 
             ChangeSelectedSlotInPC(newValue);
         }
+
         public ItemSO GetSelectedItem()
         {
             if (selectedSlot < 0 || selectedSlot >= hotBarSlots.Length)
@@ -115,7 +116,7 @@ namespace Game.Tutorial
             newObj.GetComponent<HotBarItem>().BeginItem(item);
         }
 
-        // Lay Item 
+        // Lấy tổng item được stack trên hotbar.
         public int GetItemCount(ItemSO item)
         {
             int total = 0;
@@ -146,6 +147,10 @@ namespace Game.Tutorial
 
             return true;
         }
-    }
 
+        public bool TakeItem()
+        {
+            return false;
+        }
+    }
 }

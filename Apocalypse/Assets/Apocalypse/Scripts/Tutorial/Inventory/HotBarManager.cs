@@ -148,9 +148,15 @@ namespace Game.Tutorial
             return true;
         }
 
-        public bool TakeItem()
+        public void TakeItem(ItemSO item, int quantityRequirement)
         {
-            return false;
+            int itemCount = GetItemCount(item);
+            if (itemCount < quantityRequirement)
+            {
+                Debug.LogWarning("Số lượng item trong túi của bạn không đủ để nâng cấp thành");
+                return;
+            }
+            RemoveItem(item, quantityRequirement);
         }
     }
 }

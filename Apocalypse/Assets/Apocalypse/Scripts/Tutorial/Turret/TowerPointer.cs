@@ -6,8 +6,8 @@ namespace Game.Tutorials
     {
         private void Update()
         {
-            if(TowerUpgrade.Instance.IsTrigger)
-                HandleInput();    
+            if (TowerUpgrade.Instance.IsTrigger)
+                HandleInput();
         }
 
         private void HandleInput()
@@ -33,8 +33,11 @@ namespace Game.Tutorials
 
             if (hit.collider != null)
             {
-                Debug.Log("Hit object: " + hit.collider.name);
-                // Xử lý khi chạm
+                if (TowerUpgrade.Instance.isReadyToUpgrade)
+                {
+                    Debug.Log("Hit object: " + hit.collider.name);
+                    TowerUpgrade.Instance.IteratorHotbar(TowerUpgrade.Instance.cpyRequirements);
+                }
             }
         }
     }

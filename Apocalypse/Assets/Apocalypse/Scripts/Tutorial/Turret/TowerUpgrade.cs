@@ -1,18 +1,19 @@
 using System.Collections.Generic;
-using Game.Tutorial;
-using JetBrains.Annotations;
+using System.Linq;
+using Game.Tutorials;
 using UnityEngine;
 
-namespace Game.Tutorials
+namespace Game.Tutorial.Turret
 {
     public class TowerUpgrade : MonoBehaviour
     {
         public static TowerUpgrade Instance;
         private readonly string path = "Scriptable Object/";
 
-        [SerializeField] private TowerSO dataLevel;
+        [SerializeField] private TowerSO towerSO;
         [SerializeField] private GameObject childrenIconLevelUp;
         [SerializeField] private Animator animator;
+        private int sum, level = 1;
         public List<ItemRequirementToNextLevel> cpyRequirements;
         public bool IsTrigger { get; set; } = false;
         public bool isReadyToUpgrade { get; set; } = false;
@@ -23,17 +24,17 @@ namespace Game.Tutorials
             Instance = this;
         }
 
-        private void Start()
+        private void OnEnable()
         {
-            cpyRequirements = new List<ItemRequirementToNextLevel>(dataLevel.GetRequirement);
+            UpgradeLevel(level);
         }
 
         private void LateUpdate()
         {
-            CheckItemToUpgrade(dataLevel.GetRequirement);
+            CheckItemToUpgrade(towerSO.GetRequirement);
         }
 
-        public TowerSO GetDataLevel() => dataLevel;
+        public TowerSO GetDataLevel() => towerSO;
 
         //Code này được làm bởi nminh123 (28/05/2025)
         private void CheckItemToUpgrade(List<ItemRequirementToNextLevel> requirements)
@@ -83,7 +84,7 @@ namespace Game.Tutorials
         public void IteratorHotbar(List<ItemRequirementToNextLevel> requirements)
         {
             var slots = HotBarManager.instance.hotBarSlots;
-            for (int i = 0; i < requirements.Count; i++)
+            foreach (var requirement in requirements)
             {
                 foreach (var slot in slots)
                 {
@@ -93,23 +94,52 @@ namespace Game.Tutorials
                         continue;
                     }
                     int itemCount = HotBarManager.instance.GetItemCount(item.itemSO);
-                    if (item.itemSO.id == requirements[i].item.id && itemCount >= requirements[i].quantity)
+                    Debug.Log(itemCount);
+                    if (item.itemSO.id == requirement.item.id && itemCount >= requirement.quantity)
                     {
+                        Debug.Log($"item.ItemSO.{item.itemSO.id} == requirements.item.{requirement.item.id}");
+                        if (requirement.quantity == 0)
+                        {
+                            continue;
+                        }
                         //Xoá những item ở hotbar được hiển thị trên scene
-                        HotBarManager.instance.TakeItem(item.itemSO, requirements[i].quantity);
-                        cpyRequirements.Remove(requirements[i]);
-                        NextLevel();
+                        HotBarManager.instance.TakeItem(item.itemSO, requirement.quantity);
+                        sum -= requirement.quantity;
+                        DisableItem(requirement);
+                        if (sum == 0)
+                        {
+                            level++;
+                            UpgradeLevel(level);
+                            Events.Instance.InvokeUpgradeEvent();
+                        }
                     }
                 }
             }
         }
 
-        private void NextLevel()
+        /// <summary>
+        /// Hàm này dùng để nâng cấp level thành, dựa trên những scriptable object đã được tạo ở folder <see cref="path"/>
+        /// </summary>
+        /// <param name="level">level</param>
+        private void UpgradeLevel(int level)
         {
-            if (cpyRequirements.Count == 0)
+            towerSO = Resources.Load<TowerSO>(path + "tower_" + level);
+            cpyRequirements = towerSO.GetRequirement.Select(req => new ItemRequirementToNextLevel
             {
-                dataLevel = Resources.Load<TowerSO>(path + "tower_2");
+                item = req.item,
+                quantity = req.quantity
+            }).ToList();
+            for (int i = 0; i < cpyRequirements.Count; i++)
+            {
+                sum += cpyRequirements[i].quantity;
             }
         }
+
+        private void DisableItem(ItemRequirementToNextLevel item)
+        {
+            item.quantity = 0;
+        }
+
+        public TowerSO GetTowerSO => towerSO;
     }
 }

@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace Game.Tutorials
 {
@@ -7,18 +6,10 @@ namespace Game.Tutorials
     {
         public static Events Instance { get; } = new Events();
 
-        public event Action TurretLevelUpEvent;
-        public void InvokeTurretLevelUpEvent()
+        public event Action UpgradeEvent;
+        public void InvokeUpgradeEvent()
         {
-            Debug.Log("InvokeTurretLevelUpEvent called!");
-            TurretLevelUpEvent?.Invoke();
-        }
-
-        public event Action CheckHotBarEvent;
-        public void InvokeCheckHotBarEvent()
-        {
-            Debug.Log("You are so close to turret - checking hotbar");
-            CheckHotBarEvent?.Invoke();
+            UpgradeEvent?.Invoke();
         }
     }
 }

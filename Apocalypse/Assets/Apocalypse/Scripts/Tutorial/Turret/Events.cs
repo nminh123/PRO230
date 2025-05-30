@@ -1,6 +1,6 @@
 using System;
 
-namespace Game.Tutorials
+namespace Game.Tutorial.Turret
 {
     public class Events
     {

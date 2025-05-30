@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Tutorials
+namespace Game.Tutorial.Turret
 {
     public class TowerRaycast : MonoBehaviour
     {
@@ -21,12 +21,10 @@ namespace Game.Tutorials
             RaycastHit2D hit = Physics2D.CircleCast(new Vector2(this.transform.position.x, this.transform.position.y), radius, Vector2.zero, 3f, enemyLayer);
             if (hit.collider != null)
             {
-                Debug.Log("Find enemy");
                 //Xử lý logic trong đây
             }
             else if (hit.collider == null)
             {
-                Debug.Log("You're safe now!!");
                 //Xử lý logic trong đây
             }
         }

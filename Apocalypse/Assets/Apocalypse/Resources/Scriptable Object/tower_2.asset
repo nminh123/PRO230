@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
     level: 2
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: a20dd377cff46497b8dfb5bf1a8250b2, type: 3}
     health: 1000
     stVatLy: 1000
     stPhep: 1000

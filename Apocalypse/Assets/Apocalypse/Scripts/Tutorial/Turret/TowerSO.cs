@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.Tutorial;
 
-namespace Game.Tutorials
+namespace Game.Tutorial.Turret
 {
     [CreateAssetMenu(fileName = "Tower", menuName = "TowerSO/Tower")]
     public class TowerSO : ScriptableObject
     {
         public TowerLevelData levels;
 
-        public float getHealth => levels.health;
-        public float getStVatLy => levels.stVatLy;
-        public float getStPhep => levels.stPhep;
-        public float getGiapVatLy => levels.giapVatLy;
-        public float getGiapPhep => levels.giapPhep;
-        public float getTocDoDanh => levels.tocDoDanh;
+        public Sprite GetSprite => levels.sprite;
+        public float GetHealth => levels.health;
+        public float GetStVatLy => levels.stVatLy;
+        public float GetStPhep => levels.stPhep;
+        public float GetGiapVatLy => levels.giapVatLy;
+        public float GetGiapPhep => levels.giapPhep;
+        public float GetTocDoDanh => levels.tocDoDanh;
         public List<ItemRequirementToNextLevel> GetRequirement => levels.requrement;
     }
 

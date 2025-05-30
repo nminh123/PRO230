@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Game.Tutorials
+namespace Game.Tutorial.Turret
 {
-    public class TowerCollider : MonoBehaviour
+    public class UpgradeTrigger : MonoBehaviour
     {
         private void OnTriggerEnter2D(Collider2D collision)
         {

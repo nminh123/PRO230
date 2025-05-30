@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Game.Tutorials
+namespace Game.Tutorial.Turret
 {
     public class TowerPointer : MonoBehaviour
     {

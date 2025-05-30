@@ -1,4 +1,3 @@
-using Game.Tutorials;
 using UnityEngine;
 
 namespace Game.Tutorial.Turret

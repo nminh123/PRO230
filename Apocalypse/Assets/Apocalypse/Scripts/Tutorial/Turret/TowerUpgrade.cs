@@ -39,13 +39,9 @@ namespace Game.Tutorial.Turret
         private void CheckItemToUpgrade(List<ItemRequirementToNextLevel> requirements)
         {
             if (IsTrigger)
-            {
                 IteratorHotbar(requirements, childrenIconLevelUp);
-            }
             else
-            {
                 childrenIconLevelUp.SetActive(false);
-            }
         }
 
         /// <summary>
@@ -62,9 +58,7 @@ namespace Game.Tutorial.Turret
                 {
                     HotBarItem item = slot.GetComponentInChildren<HotBarItem>();
                     if (item == null)
-                    {
                         continue;
-                    }
                     int itemCount = HotBarManager.instance.GetItemCount(item.itemSO);
                     if (item.itemSO.id == requirement.item.id && itemCount >= requirement.quantity)
                     {
@@ -89,18 +83,14 @@ namespace Game.Tutorial.Turret
                 {
                     HotBarItem item = slot.GetComponentInChildren<HotBarItem>();
                     if (item == null)
-                    {
                         continue;
-                    }
                     int itemCount = HotBarManager.instance.GetItemCount(item.itemSO);
                     Debug.Log(itemCount);
                     if (item.itemSO.id == requirement.item.id && itemCount >= requirement.quantity)
                     {
                         Debug.Log($"item.ItemSO.{item.itemSO.id} == requirements.item.{requirement.item.id}");
                         if (requirement.quantity == 0)
-                        {
                             continue;
-                        }
                         //Xoá những item ở hotbar được hiển thị trên scene
                         HotBarManager.instance.TakeItem(item.itemSO, requirement.quantity);
                         sum -= requirement.quantity;

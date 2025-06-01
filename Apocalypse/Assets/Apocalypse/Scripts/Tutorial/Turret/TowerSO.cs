@@ -4,12 +4,13 @@ using UnityEngine;
 
 namespace Game.Tutorial.Turret
 {
-    [CreateAssetMenu(fileName = "Tower", menuName = "TowerSO/Tower")]
+    [CreateAssetMenu(fileName = "tower_", menuName = "TowerSO/Tower")]
     public class TowerSO : ScriptableObject
     {
         public TowerLevelData levels;
 
         public Sprite GetSprite => levels.sprite;
+        public int GetLevel => levels.level;
         public float GetHealth => levels.health;
         public float GetStVatLy => levels.stVatLy;
         public float GetStPhep => levels.stPhep;

@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Item
   - Town
+  - PopupUpgrade
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,6 @@ TagManager:
   - Construction
   - Enemy
   - MeatLayer
-  - 
   - 
   - 
   - 

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982ef9f079d7042269c4ad4f4085a32c, type: 3}
+  m_Name: tower_5
+  m_EditorClassIdentifier: 
+  levels:
+    level: 5
+    sprite: {fileID: 21300000, guid: bbd7e3bf278ae48af8377fdf264427bf, type: 3}
+    health: 0
+    stVatLy: 0
+    stPhep: 0
+    giapVatLy: 0
+    giapPhep: 0
+    tocDoDanh: 0
+    requrement:
+    - item: {fileID: 11400000, guid: 188ff2c9e69c5524c97c95df8ec80a84, type: 2}
+      quantity: 2
+    - item: {fileID: 11400000, guid: ddba62a5a492eb7438473f706621182f, type: 2}
+      quantity: 4

@@ -24,3 +24,5 @@ MonoBehaviour:
     requrement:
     - item: {fileID: 11400000, guid: 94ce4bdd2cad347439e725587dbfc707, type: 2}
       quantity: 1
+    - item: {fileID: 11400000, guid: 94ce4bdd2cad347439e725587dbfc707, type: 2}
+      quantity: 3

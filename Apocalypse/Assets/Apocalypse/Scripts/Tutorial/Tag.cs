@@ -25,4 +25,6 @@ public static class Tag
     public const string ITEM = "Item";
     public const string WATER = "Water";
     public const string TREE = "Tree";
+
+    public const string POPUP_UPGRADE = "PopupUpgrade";
 }

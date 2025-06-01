@@ -1,4 +1,4 @@
-using System;
+using UnityEngine;
 
 namespace Game.Tutorial.Turret
 {
@@ -6,10 +6,18 @@ namespace Game.Tutorial.Turret
     {
         public static Events Instance { get; } = new Events();
 
-        public event Action UpgradeEvent;
-        public void InvokeUpgradeEvent()
+        public delegate void Upgrade(Sprite sprite);
+        public event Upgrade UpgradeEvent;
+        public void InvokeUpgradeEvent(Sprite sprite)
         {
-            UpgradeEvent?.Invoke();
+            UpgradeEvent?.Invoke(sprite);
+        }
+
+        public delegate void PopupEnable(bool isEnable);
+        public event PopupEnable PopupEnableEvent;
+        public void InvokePopupEnableEvent(bool _)
+        {
+            PopupEnableEvent?.Invoke(_);
         }
     }
 }

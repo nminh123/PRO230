@@ -58,11 +58,39 @@ namespace Game.Tutorial
         //    return false;
         //}
 
+        //public bool AddItem(ItemSO item)
+        //{
+        //    foreach (var slot in hotBarSlots)
+        //    {
+        //        HotBarItem itemSlot = slot.GetComponentInChildren<HotBarItem>();
+
+        //        if (itemSlot != null && itemSlot.itemSO == item && itemSlot.itemSO.stackable && itemSlot.count < 99)
+        //        {
+        //            itemSlot.count++;
+        //            itemSlot.RefreshCount();
+        //            return true;
+        //        }
+        //    }
+
+        //    foreach (var slot in hotBarSlots)
+        //    {
+        //        HotBarItem itemSlot = slot.GetComponentInChildren<HotBarItem>();
+
+        //        if (itemSlot == null)
+        //        {
+        //            SpawnItem(item, slot);
+        //            return true;
+        //        }
+        //    }
+
+        //    return false;
+        //}
+
         public bool AddItem(ItemSO item)
         {
-            foreach (var slot in hotBarSlots)
+            for (int i = 0; i < 7; i++) 
             {
-                HotBarItem itemSlot = slot.GetComponentInChildren<HotBarItem>();
+                HotBarItem itemSlot = hotBarSlots[i].GetComponentInChildren<HotBarItem>();
 
                 if (itemSlot != null && itemSlot.itemSO == item && itemSlot.itemSO.stackable && itemSlot.count < 99)
                 {
@@ -72,19 +100,19 @@ namespace Game.Tutorial
                 }
             }
 
-            foreach (var slot in hotBarSlots)
+            for (int i = 0; i < 7; i++)
             {
-                HotBarItem itemSlot = slot.GetComponentInChildren<HotBarItem>();
+                HotBarItem itemSlot = hotBarSlots[i].GetComponentInChildren<HotBarItem>();
 
                 if (itemSlot == null)
                 {
-                    SpawnItem(item, slot);
+                    SpawnItem(item, hotBarSlots[i]);
                     return true;
                 }
             }
-
             return false;
         }
+
 
         private void RemoveItem(ItemSO item, int amount)
         {

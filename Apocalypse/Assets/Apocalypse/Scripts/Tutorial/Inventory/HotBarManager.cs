@@ -37,8 +37,41 @@ namespace Game.Tutorial
             }
         }
 
+        //public bool AddItem(ItemSO item)
+        //{
+        //    foreach (var slot in hotBarSlots)
+        //    {
+        //        HotBarItem itemSlot = slot.GetComponentInChildren<HotBarItem>();
+
+        //        if (itemSlot == null)
+        //        {
+        //            SpawnItem(item, slot);
+        //            return true;
+        //        }
+        //        else if (itemSlot.itemSO == item && itemSlot.count < 99 && itemSlot.itemSO.stackable)
+        //        {
+        //            itemSlot.count++;
+        //            itemSlot.RefreshCount();
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
+
         public bool AddItem(ItemSO item)
         {
+            foreach (var slot in hotBarSlots)
+            {
+                HotBarItem itemSlot = slot.GetComponentInChildren<HotBarItem>();
+
+                if (itemSlot != null && itemSlot.itemSO == item && itemSlot.itemSO.stackable && itemSlot.count < 99)
+                {
+                    itemSlot.count++;
+                    itemSlot.RefreshCount();
+                    return true;
+                }
+            }
+
             foreach (var slot in hotBarSlots)
             {
                 HotBarItem itemSlot = slot.GetComponentInChildren<HotBarItem>();
@@ -48,15 +81,11 @@ namespace Game.Tutorial
                     SpawnItem(item, slot);
                     return true;
                 }
-                else if (itemSlot.itemSO == item && itemSlot.count < 99 && itemSlot.itemSO.stackable)
-                {
-                    itemSlot.count++;
-                    itemSlot.RefreshCount();
-                    return true;
-                }
             }
+
             return false;
         }
+
         private void RemoveItem(ItemSO item, int amount)
         {
             foreach (var slot in hotBarSlots)
@@ -128,6 +157,7 @@ namespace Game.Tutorial
                     total += itemSlot.count;
             }
 
+            Debug.Log(total + " " + item.id);
             return total;
         }
 

@@ -1,7 +1,7 @@
 ﻿using Cinemachine;
 using UnityEngine;
 
-public class CameraSystem : MonoBehaviour
+public class CameraSystem : Singleton<CameraSystem>
 {
     [Header("References")]
     public CinemachineVirtualCamera virtualCam;
@@ -9,19 +9,19 @@ public class CameraSystem : MonoBehaviour
 
     [Header("Camera Settings")]
     public float moveSpeed = 10f;
-    public float edgeSize = 10f; // Pixels từ rìa màn hình
+    public float edgeSize = 10f; 
 
     [Header("Zoom Settings")]
     public float zoomSpeed = 5f;
     public float minOrthoSize = 5f;
     public float maxOrthoSize = 20f;
-    public float middleMouseZoomSpeed = 2f; // Tốc độ zoom khi dùng chuột giữa
+    public float mouseZoomSpeed = 2f; 
 
     private bool isCameraLocked = true;
     private Vector3 manualCamPos;
     private float targetOrthoSize;
 
-    void Start()
+    private void Start()
     {
         if (virtualCam == null)
             virtualCam = GetComponent<CinemachineVirtualCamera>();
@@ -34,9 +34,8 @@ public class CameraSystem : MonoBehaviour
         LockCamera(true);
     }
 
-    void Update()
+    private void Update()
     {
-        // Toggle lock/unlock camera
         if (Input.GetKeyDown(KeyCode.Space))
         {
             isCameraLocked = !isCameraLocked;
@@ -49,16 +48,12 @@ public class CameraSystem : MonoBehaviour
             HandleEdgeScroll();
         }
 
-        // Handle zoom input
-        HandleZoomInput();
-
-        // Smoothly apply zoom
+        ZoomInput();
         ApplyZoom();
     }
 
-    void HandleZoomInput()
+    protected void ZoomInput()
     {
-        // Normal mouse wheel zoom
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll != 0)
         {
@@ -66,18 +61,16 @@ public class CameraSystem : MonoBehaviour
             targetOrthoSize = Mathf.Clamp(targetOrthoSize, minOrthoSize, maxOrthoSize);
         }
 
-        // Middle mouse button drag zoom (like League of Legends)
-        if (Input.GetMouseButton(2)) // Chuột giữa
+        if (Input.GetMouseButton(2))
         {
             float middleMouseScroll = Input.GetAxis("Mouse Y");
-            targetOrthoSize += middleMouseScroll * middleMouseZoomSpeed;
+            targetOrthoSize += middleMouseScroll * mouseZoomSpeed;
             targetOrthoSize = Mathf.Clamp(targetOrthoSize, minOrthoSize, maxOrthoSize);
         }
     }
-
-    void ApplyZoom()
+    // setup zoom camera
+    protected void ApplyZoom()
     {
-        // Smoothly interpolate to target zoom
         if (!Mathf.Approximately(virtualCam.m_Lens.OrthographicSize, targetOrthoSize))
         {
             virtualCam.m_Lens.OrthographicSize = Mathf.Lerp(
@@ -88,9 +81,10 @@ public class CameraSystem : MonoBehaviour
         }
     }
 
-    void LockCamera(bool shouldLock)
+    // Khoa va mo camera
+    protected void LockCamera(bool isLock)
     {
-        if (shouldLock)
+        if (isLock)
         {
             virtualCam.Follow = player;
             // Reset zoom to default when locking?
@@ -103,7 +97,7 @@ public class CameraSystem : MonoBehaviour
         }
     }
 
-    void HandleKeyboardMovement()
+    protected void HandleKeyboardMovement()
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
@@ -113,7 +107,7 @@ public class CameraSystem : MonoBehaviour
         virtualCam.transform.position = manualCamPos;
     }
 
-    void HandleEdgeScroll()
+    protected void HandleEdgeScroll()
     {
         Vector3 move = Vector3.zero;
         Vector3 mousePos = Input.mousePosition;

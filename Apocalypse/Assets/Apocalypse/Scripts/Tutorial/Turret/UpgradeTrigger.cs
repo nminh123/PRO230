@@ -12,7 +12,7 @@ namespace Game.Tutorial.Turret
                 Debug.Log($"Enter - Object trigger tag {Tag.PLAYER}");
                 // Events.Instance.InvokeCheckHotBarEvent();
                 // TowerUpgrade.Instance.IsTrigger = true;
-                Events.Instance.InvokePopupEnableEvent(collision.gameObject.CompareTag(Tag.PLAYER));
+                Events.Instance.InvokePopupEnableEvent();
                 upgradePopUp.SetActive(true);
             }
         }

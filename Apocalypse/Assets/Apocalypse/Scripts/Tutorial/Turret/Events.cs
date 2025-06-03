@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Game.Tutorial.Turret
@@ -13,11 +14,17 @@ namespace Game.Tutorial.Turret
             UpgradeEvent?.Invoke(sprite);
         }
 
-        public delegate void PopupEnable(bool isEnable);
-        public event PopupEnable PopupEnableEvent;
-        public void InvokePopupEnableEvent(bool _)
+        public event Action PopupEnableEvent;
+        public void InvokePopupEnableEvent()
         {
-            PopupEnableEvent?.Invoke(_);
+            PopupEnableEvent?.Invoke();
+        }
+
+        public delegate void UpdateVisual(int nCurrentLevel, int nNextLevel);
+        public event UpdateVisual UpdateVisualEvent;
+        public void InvokeUpdateVisualEvent(int nCurrentLevel, int nNextLevel)
+        {
+            UpdateVisualEvent?.Invoke(nCurrentLevel, nNextLevel);
         }
     }
 }

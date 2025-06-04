@@ -26,5 +26,12 @@ namespace Game.Tutorial.Turret
         {
             UpdateVisualEvent?.Invoke(nCurrentLevel, nNextLevel);
         }
+
+        public delegate void WarningIcon(bool _);
+        public event WarningIcon WarningIconEvent;
+        public void InvokeWarningIconEvent(bool _)
+        {
+            WarningIconEvent?.Invoke(_);
+        }
     }
 }

@@ -33,11 +33,15 @@ namespace Game.Tutorial.Turret
 
             if (hit.collider != null)
             {
-                if (TowerUpgrade.Instance.isReadyToUpgrade)
-                {
-                    Debug.Log("Hit object: " + hit.collider.name);
-                    TowerUpgrade.Instance.IteratorHotbar(TowerUpgrade.Instance.cpyRequirements);
-                }
+                // if (TowerUpgrade.Instance.isReadyToUpgrade)
+                // {
+                //     Debug.Log("Hit object: " + hit.collider.name);
+                //     // TowerUpgrade.Instance.IteratorHotbar(TowerUpgrade.Instance.cpyRequirements);
+                //     Events.Instance.InvokePopupEnableEvent();
+                // }
+                Debug.Log("Hit object: " + hit.collider.name);
+                // TowerUpgrade.Instance.IteratorHotbar(TowerUpgrade.Instance.cpyRequirements);
+                Events.Instance.InvokePopupEnableEvent();
             }
         }
     }

@@ -18,6 +18,7 @@ namespace Game.Tutorial.Turret
         private int sumRequirements, level = 1, nextLevel;
         public List<ItemRequirementToNextLevel> cpyRequirements;
         public bool IsTrigger { get; set; } = false;
+        public bool IsStayTrigger { get; set; } = false;
         public bool isReadyToUpgrade { get; set; } = false;
         public bool isUpgrade { get; set; } = false;
 
@@ -27,18 +28,29 @@ namespace Game.Tutorial.Turret
             UpgradeLevel(level);
         }
 
-        // private void LateUpdate()
-        // {
-        //     CheckItemToUpgrade(towerSO.GetRequirement);
-        // }
+        private void OnEnable()
+        {
+            Events.Instance.WarningIconEvent += WarningUpgrade;
+        }
+
+        private void OnDisable()
+        {
+            Events.Instance.WarningIconEvent -= WarningUpgrade;
+        }
 
         //Code này được làm bởi nminh123 (28/05/2025)
-        private void CheckItemToUpgrade(List<ItemRequirementToNextLevel> requirements)
+        // private void CheckItemToUpgrade(List<ItemRequirementToNextLevel> requirements)
+        // {
+        //     if (IsTrigger && towerSO.GetLevel < maxLevel)
+        //         IteratorHotbar(requirements, childrenIconLevelUp);
+        //     else
+        //         childrenIconLevelUp.SetActive(false);
+        // }
+
+        private void WarningUpgrade(bool _)
         {
-            if (IsTrigger && towerSO.GetLevel < maxLevel)
-                IteratorHotbar(requirements, childrenIconLevelUp);
-            else
-                childrenIconLevelUp.SetActive(false);
+            childrenIconLevelUp.SetActive(_);
+            // animator.Play("WarningIcon");
         }
 
         /// <summary>
@@ -46,26 +58,26 @@ namespace Game.Tutorial.Turret
         /// </summary>
         /// <param name="requirements">Những yêu cầu để nâng cấp thành</param>
         /// <param name="children">Object con để nhảy anim thông báo người chơi</param>
-        public void IteratorHotbar(List<ItemRequirementToNextLevel> requirements, GameObject children)
-        {
-            var slots = HotBarManager.instance.hotBarSlots;
-            foreach (var requirement in requirements)
-            {
-                foreach (var slot in slots)
-                {
-                    HotBarItem item = slot.GetComponentInChildren<HotBarItem>();
-                    if (item == null)
-                        continue;
-                    int itemCount = HotBarManager.instance.GetItemCount(item.itemSO);
-                    if (item.itemSO.id == requirement.item.id && itemCount >= requirement.quantity)
-                    {
-                        children.SetActive(true);
-                        animator.Play("LevelUpArrowAnim");
-                        isReadyToUpgrade = true;
-                    }
-                }
-            }
-        }
+        // public void IteratorHotbar(List<ItemRequirementToNextLevel> requirements, GameObject children)
+        // {
+        //     var slots = HotBarManager.instance.hotBarSlots;
+        //     foreach (var requirement in requirements)
+        //     {
+        //         foreach (var slot in slots)
+        //         {
+        //             HotBarItem item = slot.GetComponentInChildren<HotBarItem>();
+        //             if (item == null)
+        //                 continue;
+        //             int itemCount = HotBarManager.instance.GetItemCount(item.itemSO);
+        //             if (item.itemSO.id == requirement.item.id && itemCount >= requirement.quantity)
+        //             {
+        //                 children.SetActive(true);
+        //                 animator.Play("LevelUpArrowAnim");
+        //                 isReadyToUpgrade = true;
+        //             }
+        //         }
+        //     }
+        // }
 
         /// <summary>
         /// Hàm dùng để lặp qua các hotbar slot, tìm xem có đủ item để nâng cấp không ? nếu người chơi click ở <seealso cref="TowerPointer"/> sẽ bắt click và <seealso cref="HotBarManager.TakeItem(ItemSO item, int quantityRequirement)"/>xoá item ở scene : không xảy ra gì.

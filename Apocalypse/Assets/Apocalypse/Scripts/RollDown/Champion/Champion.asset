@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd9ffc6f486f8a74f9678d67a669e1e7, type: 3}
+  m_Name: Champion
+  m_EditorClassIdentifier: 
+  championName: 1213
+  cost: 1
+  icon: {fileID: -22129663, guid: 924bead5b2040cf4aa2416b52996efa9, type: 3}
+  prefab: {fileID: 2619622965362142277, guid: e97bb969e27871d45a39c3a07b2ae066, type: 3}

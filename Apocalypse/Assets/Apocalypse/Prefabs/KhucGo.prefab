@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1560947474030337907}
   - component: {fileID: 5724993994126197706}
   - component: {fileID: -9202657165204758545}
+  - component: {fileID: 3268305714279538028}
   m_Layer: 0
   m_Name: KhucGo
   m_TagString: Item
@@ -144,3 +145,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemSO: {fileID: 11400000, guid: 94ce4bdd2cad347439e725587dbfc707, type: 2}
+--- !u!114 &3268305714279538028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5969341331082424722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6ee35ea694136b41940a6d632bebe0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 15c3bcc28d81fd044a0ce5bf842d90e6, type: 2}

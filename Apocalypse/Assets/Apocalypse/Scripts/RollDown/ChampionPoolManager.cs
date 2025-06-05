@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
 public class ChampionPoolManager : MonoBehaviour
 {
     public List<Champion> champions;
@@ -11,8 +11,14 @@ public class ChampionPoolManager : MonoBehaviour
     {
         foreach (Champion champ in champions)
         {
-            int copies = champ.cost switch {
-                1 => 29, 2 => 22, 3 => 18, 4 => 12, 5 => 10, _ => 0
+            int copies = champ.cost switch
+            {
+                1 => 999,
+                2 => 222,
+                3 => 333,
+                4 => 444,
+                5 => 55,
+                _ => 0
             };
             pool[champ] = copies;
         }
@@ -26,4 +32,28 @@ public class ChampionPoolManager : MonoBehaviour
         pool[chosen]--;
         return chosen;
     }
+
+    public void ReturnChampion(Champion champ)
+    {
+        if (pool.ContainsKey(champ))
+            pool[champ]++;
+    }
+
+    public Champion PeekRandomChampion(int cost)
+    {
+        List<Champion> available = pool.Keys.Where(c => c.cost == cost && pool[c] > 0).ToList();
+
+        if (available.Count == 0) return null;
+
+        return available[Random.Range(0, available.Count)];
+    }
+
+    public void ConsumeChampion(Champion champ)
+    {
+        if (pool.ContainsKey(champ) && pool[champ] > 0)
+            pool[champ]--;
+        else
+            Debug.LogWarning("đã hết champ trong pool");
+    }
+
 }

@@ -7,4 +7,6 @@ public class Champion : ScriptableObject
     public int cost; // 1–5
     public Sprite icon;
     public GameObject prefab;
+    public Color tierColor;
+
 }

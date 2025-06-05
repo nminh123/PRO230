@@ -1330,7 +1330,7 @@ GameObject:
   - component: {fileID: 1072163616}
   - component: {fileID: 1072163615}
   m_Layer: 5
-  m_Name: bg
+  m_Name: bg_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1812,7 +1812,7 @@ GameObject:
   - component: {fileID: 1412992170}
   - component: {fileID: 1412992169}
   m_Layer: 5
-  m_Name: bg
+  m_Name: bg_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2142,7 +2142,7 @@ GameObject:
   - component: {fileID: 1898227318}
   - component: {fileID: 1898227317}
   m_Layer: 5
-  m_Name: bg
+  m_Name: bg_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2365,7 +2365,7 @@ Transform:
   m_GameObject: {fileID: 2088386783}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.99, y: -0.88, z: -9.966593}
+  m_LocalPosition: {x: 0.06, y: -2.24, z: -9.966593}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2390,18 +2390,16 @@ MonoBehaviour:
     overlay: {fileID: 1051093360}
   - iconImage: {fileID: 141346545}
     nameText: {fileID: 963956476}
-    bgFrame: {fileID: 1898227317}
+    bgFrame: {fileID: 1412992169}
     overlay: {fileID: 1603302150}
   - iconImage: {fileID: 1504179372}
     nameText: {fileID: 526771891}
-    bgFrame: {fileID: 1898227317}
+    bgFrame: {fileID: 1072163615}
     overlay: {fileID: 2138253985}
   poolManager: {fileID: 2088386787}
   oddsData: {fileID: 11400000, guid: 6c76b70a6598b0c41ad2739ad7092af2, type: 2}
   spawnPoint: {fileID: 2088386785}
-  playerLevel: 1
-  tierColors:
-  - {r: 1, g: 0, b: 0, a: 1}
+  playerLevel: 3
 --- !u!114 &2088386787
 MonoBehaviour:
   m_ObjectHideFlags: 0

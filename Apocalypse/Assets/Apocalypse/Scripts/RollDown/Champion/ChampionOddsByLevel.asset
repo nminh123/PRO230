@@ -12,22 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecff3afd27d0e01429bb540c92a8ddd2, type: 3}
   m_Name: ChampionOddsByLevel
   m_EditorClassIdentifier: 
-  oddsByLevel:
+  oddsPerLevelList:
   - level: 1
-    odds: 6400000000000000000000000000000000000000
+    odds:
+    - 100
+    - 0
+    - 0
+    - 0
+    - 0
   - level: 2
-    odds: 6400000000000000000000000000000000000000
+    odds:
+    - 100
+    - 0
+    - 0
+    - 0
   - level: 3
-    odds: 4b00000019000000000000000000000000000000
+    odds:
+    - 75
+    - 25
+    - 0
+    - 0
+    - 0
   - level: 4
-    odds: 370000001e0000000f0000000000000000000000
-  - level: 5
-    odds: 2d00000021000000140000000200000000000000
-  - level: 6
-    odds: 1e00000028000000190000000500000000000000
-  - level: 7
-    odds: 130000001e000000230000000f00000001000000
-  - level: 8
-    odds: 1200000019000000200000001600000003000000
-  - level: 9
-    odds: 0a0000001400000019000000230000000a000000
+    odds: []

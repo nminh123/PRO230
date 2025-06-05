@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class ShopManager : MonoBehaviour
 {
@@ -22,7 +23,16 @@ public class ShopManager : MonoBehaviour
 
     private Champion[] currentChampions = new Champion[5];
 
-    public Color[] tierColors;
+    void OnEnable()
+    {
+        StartCoroutine(DelayedRoll());
+    }
+
+    IEnumerator DelayedRoll()
+    {
+        yield return null; // đợi 1 frame để mọi UI được khởi tạo
+        RollShop();
+    }
 
     public void RollShop()
     {
@@ -36,7 +46,7 @@ public class ShopManager : MonoBehaviour
             // Update UI
             shopSlots[i].iconImage.sprite = rolled.icon;
             shopSlots[i].nameText.text = rolled.championName;
-            shopSlots[i].bgFrame.color = tierColors[Mathf.Clamp(rolled.cost - 1, 0, 4)];
+            shopSlots[i].bgFrame.color = rolled.tierColor;
             shopSlots[i].overlay.SetActive(false);
         }
     }

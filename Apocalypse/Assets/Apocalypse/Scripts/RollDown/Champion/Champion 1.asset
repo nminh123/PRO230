@@ -16,3 +16,4 @@ MonoBehaviour:
   cost: 1
   icon: {fileID: 2030386642, guid: 924bead5b2040cf4aa2416b52996efa9, type: 3}
   prefab: {fileID: 8742526048836343, guid: eb6c59dd3b8a4044595b3e8372fab89c, type: 3}
+  tierColor: {r: 0, g: 0.29107332, b: 1, a: 1}

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Champion 8
   m_EditorClassIdentifier: 
   championName: 1213
-  cost: 2
+  cost: 3
   icon: {fileID: 1307685818, guid: 924bead5b2040cf4aa2416b52996efa9, type: 3}
+  prefab: {fileID: 0}

@@ -8,7 +8,7 @@ public class ChampionOddsByLevel : ScriptableObject
     public class OddsPerLevel
     {
         public int level;
-        public float[] odds; // 5 phần tử: tỉ lệ tướng 1★ đến 5★
+        public float[] odds; 
     }
 
     public List<OddsPerLevel> oddsPerLevelList;

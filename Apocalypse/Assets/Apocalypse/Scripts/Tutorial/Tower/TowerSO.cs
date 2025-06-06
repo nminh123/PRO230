@@ -12,11 +12,9 @@ namespace Game.Tutorial.Turret
         public Sprite GetSprite => levels.sprite;
         public int GetLevel => levels.level;
         public float GetHealth => levels.health;
-        public float GetStVatLy => levels.stVatLy;
-        public float GetStPhep => levels.stPhep;
-        public float GetGiapVatLy => levels.giapVatLy;
-        public float GetGiapPhep => levels.giapPhep;
-        public float GetTocDoDanh => levels.tocDoDanh;
+        public float GetDamage => levels.Damage;
+        public float GetAmmor => levels.Ammor;
+        public float GetRegenHeal => levels.RegenHeal;
         public List<ItemRequirementToNextLevel> GetRequirement => levels.requrement;
     }
 
@@ -26,11 +24,9 @@ namespace Game.Tutorial.Turret
         public int level;
         public Sprite sprite;
         public float health;
-        public float stVatLy;
-        public float stPhep;
-        public float giapVatLy;
-        public float giapPhep;
-        public float tocDoDanh;
+        public float Damage;
+        public float Ammor;
+        public float RegenHeal;//Toc do hoi mau
         public List<ItemRequirementToNextLevel> requrement;
     }
 

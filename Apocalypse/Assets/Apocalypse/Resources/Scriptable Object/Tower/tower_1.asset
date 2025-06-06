@@ -15,14 +15,8 @@ MonoBehaviour:
   levels:
     level: 1
     sprite: {fileID: 21300000, guid: 57eaa7964bf9142b6aa8be480e935da9, type: 3}
-    health: 100
-    stVatLy: 100
-    stPhep: 100
-    giapVatLy: 100
-    giapPhep: 100
-    tocDoDanh: 100
-    requrement:
-    - item: {fileID: 11400000, guid: ddba62a5a492eb7438473f706621182f, type: 2}
-      quantity: 1
-    - item: {fileID: 11400000, guid: 94ce4bdd2cad347439e725587dbfc707, type: 2}
-      quantity: 5
+    health: 90
+    Damage: 5
+    Ammor: 0
+    RegenHeal: 0
+    requrement: []

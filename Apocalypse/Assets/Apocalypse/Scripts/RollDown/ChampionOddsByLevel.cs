@@ -21,6 +21,7 @@ public class ChampionOddsByLevel : ScriptableObject
                 return entry.odds;
         }
 
+        Debug.LogError("fucku");
         Debug.LogWarning("Không tìm thấy odds cho level " + level);
         return new float[] { 100, 0, 0, 0, 0 }; // fallback
     }

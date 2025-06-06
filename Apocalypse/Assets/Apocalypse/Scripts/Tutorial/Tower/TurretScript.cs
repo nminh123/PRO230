@@ -15,7 +15,7 @@ namespace Game.Tutorial.Turret
 
         private void Start()
         {
-            spriteRenderer.sprite = TowerUpgrade.Instance.GetTowerSO.GetSprite;
+            spriteRenderer.sprite = TowerUpgrade.Instance.GetCurrentLevel.GetSprite;
         }
 
         private void UpdateSprite(Sprite sprite)

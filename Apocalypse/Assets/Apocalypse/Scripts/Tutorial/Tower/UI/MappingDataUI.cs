@@ -2,21 +2,31 @@ using System.Collections.Generic;
 using Game.Tutorial.Turret;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 namespace Game.Tutorial.UI
 {
     public class MappingDataUI : MonoBehaviour
     {
+        private readonly string content = "Tower Level "; //Plus level
         [SerializeField] private List<Image> icons;
         [SerializeField] private List<TextMeshProUGUI> texts;
+        [SerializeField] private TextMeshProUGUI currentLevelText, nextLevelText;
         [SerializeField] private Button upgradeButton;
         private TowerSO currentLevel, nextLevel;
-        private int SO_Level, currentLevelNum, nextLevelNum;
+        private int currentLevelNum, nextLevelNum;
+
+        private void Awake()
+        {
+            // EventCallback(1, 2);
+            // InitializeLevel();
+        }
 
         private void Start()
         {
-            UpdateData(TowerUpgrade.Instance.GetTowerSO);
+            UpdateData(TowerUpgrade.Instance.GetCurrentLevel, currentLevelText);
+            UpdateData(nextLevel, nextLevelText);
             OnUpgradeButtonClick();
         }
 
@@ -34,12 +44,13 @@ namespace Game.Tutorial.UI
 
         private void OnUpgradeButtonClick()
         {
-            upgradeButton.onClick.AddListener(() => TowerUpgrade.Instance.IteratorHotbar(currentLevel.GetRequirement));
+            upgradeButton.onClick.AddListener(() => TowerUpgrade.Instance.IteratorHotbar(currentLevel.GetRequirements));
         }
 
         private void DisplayPopup()
         {
-            UpdateData(TowerUpgrade.Instance.GetTowerSO);
+            UpdateData(TowerUpgrade.Instance.GetCurrentLevel, currentLevelText);
+            UpdateData(nextLevel, nextLevelText);
             UpgradeVisual();
         }
 
@@ -50,9 +61,9 @@ namespace Game.Tutorial.UI
             //Duyệt 3 danh sách icons, texts và requirement, map những data trong requirement với icons và texts.
             while (i < 2)
             {
-                icons[i].sprite = currentLevel.GetRequirement[i].item.image;
-                texts[i].text = currentLevel.GetRequirement[i].quantity.ToString();
-                TowerUpgrade.Instance.CheckQuantity(texts[i], currentLevel.GetRequirement[i].quantity, currentLevel.GetRequirement[i].item);
+                icons[i].sprite = currentLevel.GetRequirements[i].item.image;
+                texts[i].text = currentLevel.GetRequirements[i].quantity.ToString();
+                TowerUpgrade.Instance.CheckQuantity(texts[i], currentLevel.GetRequirements[i].quantity, currentLevel.GetRequirements[i].item);
                 i++;
             }
         }
@@ -64,10 +75,20 @@ namespace Game.Tutorial.UI
             DisplayPopup();
         }
 
-        private void UpdateData(TowerSO SO)
+        private void InitializeLevel()
         {
-            currentLevel = SO;
-            SO_Level = SO.GetLevel;
+            currentLevel = Resources.Load<TowerSO>(TowerUpgrade.Instance.path + "tower_" + 1);
+            nextLevel = Resources.Load<TowerSO>(TowerUpgrade.Instance.path + "tower_" + 2);
+        }
+
+        private void UpdateData(TowerSO level, TextMeshProUGUI text)
+        {
+            currentLevel.SetLevel(level.GetLevel);
+            currentLevel.SetHealth(level.GetHealth);
+            currentLevel.SetDamage(level.GetDamage);
+            currentLevel.SetAmmor(level.GetAmmor);
+            currentLevel.SetRequirements(level.GetRequirements);
+            text.text = content + level.GetLevel.ToString();
             //Initialize more data in tower so
         }
 

@@ -11,7 +11,7 @@ namespace Game.Tutorial.Turret
         public readonly string path = "Scriptable Object/Tower/";
         private readonly int maxLevel = 5;
 
-        [SerializeField] private TowerSO towerSO;
+        [SerializeField] private TowerSO currentLevel;
         [SerializeField] private GameObject childrenIconLevelUp;
         [SerializeField] private Animator animator;
         private List<ItemSO> items = new List<ItemSO>();
@@ -109,7 +109,7 @@ namespace Game.Tutorial.Turret
                             level++;
                             nextLevel = level + 1;
                             UpgradeLevel(level);
-                            Events.Instance.InvokeUpgradeEvent(towerSO.GetSprite);
+                            Events.Instance.InvokeUpgradeEvent(currentLevel.GetSprite);
                             Events.Instance.InvokeUpdateVisualEvent(level, nextLevel);
                         }
                     }
@@ -149,8 +149,8 @@ namespace Game.Tutorial.Turret
         /// <param name="level">level</param>
         private void UpgradeLevel(int level)
         {
-            towerSO = Resources.Load<TowerSO>(path + "tower_" + level);
-            cpyRequirements = towerSO.GetRequirement.Select(req => new ItemRequirementToNextLevel
+            currentLevel = Resources.Load<TowerSO>(path + "tower_" + level);
+            cpyRequirements = currentLevel.GetRequirements.Select(req => new ItemRequirementToNextLevel
             {
                 item = req.item,
                 quantity = req.quantity
@@ -166,7 +166,7 @@ namespace Game.Tutorial.Turret
             item.quantity = 0;
         }
 
-        public TowerSO GetTowerSO => towerSO;
+        public TowerSO GetCurrentLevel => currentLevel;
         public int GetLevel => level;
     }
 }

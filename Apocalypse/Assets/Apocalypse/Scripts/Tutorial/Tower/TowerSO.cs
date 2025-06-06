@@ -11,11 +11,17 @@ namespace Game.Tutorial.Turret
 
         public Sprite GetSprite => levels.sprite;
         public int GetLevel => levels.level;
+        public void SetLevel(int val) => levels.level = val;
         public float GetHealth => levels.health;
+        public void SetHealth(float val) => levels.health = val;
         public float GetDamage => levels.Damage;
+        public void SetDamage(float val) => levels.Damage = val;
         public float GetAmmor => levels.Ammor;
+        public void SetAmmor(float val) => levels.Ammor = val;
         public float GetRegenHeal => levels.RegenHeal;
-        public List<ItemRequirementToNextLevel> GetRequirement => levels.requrement;
+        public void SetRegenHeal(float val) => levels.RegenHeal = val;
+        public List<ItemRequirementToNextLevel> GetRequirements => levels.requrement;
+        public void SetRequirements(List<ItemRequirementToNextLevel> _) => levels.requrement = _;
     }
 
     [Serializable]

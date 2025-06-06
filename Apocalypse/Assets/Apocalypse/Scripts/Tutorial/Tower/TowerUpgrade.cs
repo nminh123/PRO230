@@ -8,7 +8,7 @@ namespace Game.Tutorial.Turret
     public class TowerUpgrade : MonoBehaviour
     {
         public static TowerUpgrade Instance;
-        public readonly string path = "Scriptable Object/";
+        public readonly string path = "Scriptable Object/Tower/";
         private readonly int maxLevel = 5;
 
         [SerializeField] private TowerSO towerSO;

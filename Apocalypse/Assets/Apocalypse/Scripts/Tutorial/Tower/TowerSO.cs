@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Tutorial.Turret
 {
-    [CreateAssetMenu(fileName = "tower_", menuName = "TowerSO/Tower")]
+    [CreateAssetMenu(fileName = "tower_", menuName = "Allies/Tower")]
     public class TowerSO : ScriptableObject
     {
         public TowerLevelData levels;

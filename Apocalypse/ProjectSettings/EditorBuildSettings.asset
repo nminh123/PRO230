@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Apocalypse/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    path: Assets/Apocalypse/Scenes/Client.unity
+    guid: b8b33a94f8b61ef4cad32ba67cb8aedf
   - enabled: 1
     path: Assets/Apocalypse/Scenes/Map1.unity
     guid: 094522c18c0521048b446cb4ee73cc40

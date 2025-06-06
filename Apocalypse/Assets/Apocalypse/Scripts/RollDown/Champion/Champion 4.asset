@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd9ffc6f486f8a74f9678d67a669e1e7, type: 3}
   m_Name: Champion 4
   m_EditorClassIdentifier: 
-  championName: 1213
+  championName: 3121
   cost: 3
-  icon: {fileID: -1408658223, guid: 924bead5b2040cf4aa2416b52996efa9, type: 3}
-  prefab: {fileID: 0}
+  icon: {fileID: 2103094553, guid: 924bead5b2040cf4aa2416b52996efa9, type: 3}
+  prefab: {fileID: 4841057909177621646, guid: b7d748071f5077d41b96168c21198296, type: 3}
+  tierColor: {r: 0.14779866, g: 0.47177404, b: 1, a: 1}

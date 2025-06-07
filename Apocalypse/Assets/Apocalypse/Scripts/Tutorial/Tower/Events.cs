@@ -20,11 +20,10 @@ namespace Game.Tutorial.Turret
             PopupEnableEvent?.Invoke();
         }
 
-        public delegate void UpdateVisual(int nCurrentLevel, int nNextLevel);
-        public event UpdateVisual UpdateVisualEvent;
-        public void InvokeUpdateVisualEvent(int nCurrentLevel, int nNextLevel)
+        public event Action UpdateVisualEvent;
+        public void InvokeUpdateVisualEvent()
         {
-            UpdateVisualEvent?.Invoke(nCurrentLevel, nNextLevel);
+            UpdateVisualEvent?.Invoke();
         }
 
         public delegate void WarningIcon(bool _);

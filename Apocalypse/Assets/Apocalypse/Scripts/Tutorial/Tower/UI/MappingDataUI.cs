@@ -46,6 +46,9 @@ namespace Game.Tutorial.UI
             UpgradeVisual();
         }
 
+        /// <summary>
+        /// Chức năng của hàm như tên hàm -> cập nhật hình của Popup.
+        /// </summary>
         public void UpgradeVisual()
         {
             UpdateCurrentLevelUI();
@@ -66,6 +69,9 @@ namespace Game.Tutorial.UI
 
         private void UpdateSlider(Slider _slider, float val) => _slider.value = val;
 
+        /// <summary>
+        /// Update UI slider
+        /// </summary>
         private void UpdateCurrentLevelUI()
         {
             Debug.Log($"current level: {TowerUpgrade.Instance.GetCurrentLevel.GetLevel}");
@@ -76,6 +82,9 @@ namespace Game.Tutorial.UI
             currentLevelText.text = content + TowerUpgrade.Instance.GetCurrentLevel.GetLevel.ToString();
         }
 
+        /// <summary>
+        /// Update UI slider
+        /// </summary>
         private void UpdateNextLevelUI()
         {
             Debug.Log($"next level: {TowerUpgrade.Instance.GetNextLevel.GetLevel}");
@@ -92,6 +101,7 @@ namespace Game.Tutorial.UI
         /// <param name="mapLevelData">level trong <see cref="MappingDataUI"/></param>
         /// <param name="levelData">level trong <see cref="TowerUpgrade"/></param>
         /// <param name="text">text</param>
+        /// abandon code
         private void UpdateData(TowerSO mapLevelData, TowerSO levelData, TextMeshProUGUI text)
         {
             mapLevelData = levelData;

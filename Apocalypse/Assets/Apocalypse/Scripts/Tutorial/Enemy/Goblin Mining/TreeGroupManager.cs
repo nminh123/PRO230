@@ -4,6 +4,7 @@ using UnityEngine;
 public class TreeGroupManager : MonoBehaviour
 {
     private List<WorkerAI> workers = new List<WorkerAI>();
+    private List<EnemyBaseAI> wooders = new List<EnemyBaseAI>();
     private List<MineAI> miners = new List<MineAI>();
     private List<MeaterAI> meaters = new List<MeaterAI>();
 
@@ -14,6 +15,15 @@ public class TreeGroupManager : MonoBehaviour
             workers.Add(worker);
             Vector3 offset = GetOffsetPosition(workers.Count - 1);
             worker.SetOffsetPosition(transform.position + offset);
+        }
+    }
+    public void RegisterWooder(EnemyBaseAI wooder)
+    {
+        if (!wooders.Contains(wooder))
+        {
+            wooders.Add(wooder);
+            Vector3 offset = GetOffsetPosition(wooders.Count - 1);
+            wooder.SetOffsetPosition(transform.position + offset);
         }
     }
     public void RegisterMiner(MineAI mineAI)
@@ -40,6 +50,13 @@ public class TreeGroupManager : MonoBehaviour
         if (workers.Contains(worker))
         {
             workers.Remove(worker);
+        }
+    }
+    public void UnregisterWooder(EnemyBaseAI wooder)
+    {
+        if (wooders.Contains(wooder))
+        {
+            wooders.Remove(wooder);
         }
     }
     public void UnregisterMiner(MineAI mineAI)

@@ -11,11 +11,11 @@ namespace Game.Tutorial.Turret
         public readonly string path = "Scriptable Object/Tower/";
         private readonly int maxLevel = 5;
 
-        [SerializeField] private TowerSO currentLevel;
+        [SerializeField] private TowerSO currentLevelSO, nextLevelSO;
         [SerializeField] private GameObject childrenIconLevelUp;
         [SerializeField] private Animator animator;
         private List<ItemSO> items = new List<ItemSO>();
-        private int sumRequirements, level = 1, nextLevel;
+        private int sumRequirements, level = 1, nextLevel = 2;
         public List<ItemRequirementToNextLevel> cpyRequirements;
         public bool IsTrigger { get; set; } = false;
         public bool IsStayTrigger { get; set; } = false;
@@ -25,7 +25,7 @@ namespace Game.Tutorial.Turret
         private void Awake()
         {
             Instance = this;
-            UpgradeLevel(level);
+            UpgradeLevel(level, nextLevel);
         }
 
         private void OnEnable()
@@ -108,9 +108,9 @@ namespace Game.Tutorial.Turret
                         {
                             level++;
                             nextLevel = level + 1;
-                            UpgradeLevel(level);
-                            Events.Instance.InvokeUpgradeEvent(currentLevel.GetSprite);
-                            Events.Instance.InvokeUpdateVisualEvent(level, nextLevel);
+                            UpgradeLevel(level, nextLevel);
+                            Events.Instance.InvokeUpgradeEvent(currentLevelSO.GetSprite);
+                            Events.Instance.InvokeUpdateVisualEvent();
                         }
                     }
                 }
@@ -147,10 +147,12 @@ namespace Game.Tutorial.Turret
         /// Hàm này dùng để nâng cấp level thành, dựa trên những scriptable object đã được tạo ở folder <see cref="path"/>
         /// </summary>
         /// <param name="level">level</param>
-        private void UpgradeLevel(int level)
+        private void UpgradeLevel(int level, int nextLevel)
         {
-            currentLevel = Resources.Load<TowerSO>(path + "tower_" + level);
-            cpyRequirements = currentLevel.GetRequirements.Select(req => new ItemRequirementToNextLevel
+            currentLevelSO = Resources.Load<TowerSO>(path + "tower_" + level);
+            nextLevelSO = Resources.Load<TowerSO>(path + "tower_" + nextLevel);
+            Debug.Log($"level: {currentLevelSO.GetLevel}");
+            cpyRequirements = currentLevelSO.GetRequirements.Select(req => new ItemRequirementToNextLevel
             {
                 item = req.item,
                 quantity = req.quantity
@@ -166,7 +168,8 @@ namespace Game.Tutorial.Turret
             item.quantity = 0;
         }
 
-        public TowerSO GetCurrentLevel => currentLevel;
+        public TowerSO GetCurrentLevel => currentLevelSO;
+        public TowerSO GetNextLevel => nextLevelSO;
         public int GetLevel => level;
     }
 }

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Game.Tutorial.Turret;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 namespace Game.Tutorial.UI
@@ -14,81 +13,95 @@ namespace Game.Tutorial.UI
         [SerializeField] private List<TextMeshProUGUI> texts;
         [SerializeField] private TextMeshProUGUI currentLevelText, nextLevelText;
         [SerializeField] private Button upgradeButton;
+        [SerializeField] private Slider cHealSlider, cRegenHealSlider, cDamageSlider, cAmmorSlider;
+        [SerializeField] private Slider nHealSlider, nRegenHealSlider, nDamageSlider, nAmmorSlider;
         private TowerSO currentLevel, nextLevel;
         private int currentLevelNum, nextLevelNum;
 
-        private void Awake()
-        {
-            // EventCallback(1, 2);
-            // InitializeLevel();
-        }
-
         private void Start()
         {
-            UpdateData(TowerUpgrade.Instance.GetCurrentLevel, currentLevelText);
-            UpdateData(nextLevel, nextLevelText);
+            UpgradeVisual();
             OnUpgradeButtonClick();
         }
 
         private void OnEnable()
         {
             Events.Instance.PopupEnableEvent += DisplayPopup;
-            Events.Instance.UpdateVisualEvent += EventCallback;
+            Events.Instance.UpdateVisualEvent += UpgradeVisual;
         }
 
         private void OnDisable()
         {
             Events.Instance.PopupEnableEvent -= DisplayPopup;
-            Events.Instance.UpdateVisualEvent -= EventCallback;
+            Events.Instance.UpdateVisualEvent -= UpgradeVisual;
         }
 
         private void OnUpgradeButtonClick()
         {
-            upgradeButton.onClick.AddListener(() => TowerUpgrade.Instance.IteratorHotbar(currentLevel.GetRequirements));
+            upgradeButton.onClick.AddListener(() => TowerUpgrade.Instance.IteratorHotbar(TowerUpgrade.Instance.GetCurrentLevel.GetRequirements));
         }
 
         private void DisplayPopup()
         {
-            UpdateData(TowerUpgrade.Instance.GetCurrentLevel, currentLevelText);
-            UpdateData(nextLevel, nextLevelText);
             UpgradeVisual();
         }
 
         public void UpgradeVisual()
         {
+            UpdateCurrentLevelUI();
+            UpdateNextLevelUI();
+            Debug.Log($"Current Heal Slider value: {cHealSlider.value}, Current RegenHeal Slider value: {cRegenHealSlider.value}, Current Damage Slider value: {cDamageSlider.value}, Current Ammor Slider value: {cAmmorSlider.value}");
+            Debug.Log($"Next Heal Slider value: {nHealSlider.value}, Next RegenHeal Slider value: {nRegenHealSlider.value}, Next Damage Slider value: {nDamageSlider.value}, Next Ammor Slider value: {nAmmorSlider.value}");
             int i = 0;
-            //Condition: i có thể bằng currentLevel.GetRequirement.Count() -> có vấn đề về UI không thể tự sinh ra.
+            //CoRegenHealion: i có thể bằng currentLevel.GetRequirement.Count() -> có vấn đề về UI không thể tự sinh ra.
             //Duyệt 3 danh sách icons, texts và requirement, map những data trong requirement với icons và texts.
             while (i < 2)
             {
-                icons[i].sprite = currentLevel.GetRequirements[i].item.image;
-                texts[i].text = currentLevel.GetRequirements[i].quantity.ToString();
-                TowerUpgrade.Instance.CheckQuantity(texts[i], currentLevel.GetRequirements[i].quantity, currentLevel.GetRequirements[i].item);
+                icons[i].sprite = TowerUpgrade.Instance.GetCurrentLevel.GetRequirements[i].item.image;
+                texts[i].text = TowerUpgrade.Instance.GetCurrentLevel.GetRequirements[i].quantity.ToString();
+                // TowerUpgrade.Instance.CheckQuantity(texts[i], currentLevel.GetRequirements[i].quantity, currentLevel.GetRequirements[i].item);
                 i++;
             }
         }
 
-        private void EventCallback(int nCurrentLevel, int nNextLevel)
+        private void UpdateSlider(Slider _slider, float val) => _slider.value = val;
+
+        private void UpdateCurrentLevelUI()
         {
-            currentLevel = Resources.Load<TowerSO>(TowerUpgrade.Instance.path + "tower_" + nCurrentLevel);
-            nextLevel = Resources.Load<TowerSO>(TowerUpgrade.Instance.path + "tower_" + nNextLevel);
-            DisplayPopup();
+            Debug.Log($"current level: {TowerUpgrade.Instance.GetCurrentLevel.GetLevel}");
+            UpdateSlider(cHealSlider, TowerUpgrade.Instance.GetCurrentLevel.GetHealth);
+            UpdateSlider(cRegenHealSlider, TowerUpgrade.Instance.GetCurrentLevel.GetRegenHeal);
+            UpdateSlider(cDamageSlider, TowerUpgrade.Instance.GetCurrentLevel.GetDamage);
+            UpdateSlider(cAmmorSlider, TowerUpgrade.Instance.GetCurrentLevel.GetAmmor);
+            currentLevelText.text = content + TowerUpgrade.Instance.GetCurrentLevel.GetLevel.ToString();
         }
 
-        private void InitializeLevel()
+        private void UpdateNextLevelUI()
         {
-            currentLevel = Resources.Load<TowerSO>(TowerUpgrade.Instance.path + "tower_" + 1);
-            nextLevel = Resources.Load<TowerSO>(TowerUpgrade.Instance.path + "tower_" + 2);
+            Debug.Log($"next level: {TowerUpgrade.Instance.GetNextLevel.GetLevel}");
+            UpdateSlider(nHealSlider, TowerUpgrade.Instance.GetNextLevel.GetHealth);
+            UpdateSlider(nRegenHealSlider, TowerUpgrade.Instance.GetNextLevel.GetRegenHeal);
+            UpdateSlider(nDamageSlider, TowerUpgrade.Instance.GetNextLevel.GetDamage);
+            UpdateSlider(nAmmorSlider, TowerUpgrade.Instance.GetNextLevel.GetAmmor);
+            nextLevelText.text = content + TowerUpgrade.Instance.GetNextLevel.GetLevel.ToString();
         }
 
-        private void UpdateData(TowerSO level, TextMeshProUGUI text)
+        /// <summary>
+        /// Cập nhập data cho UI
+        /// </summary>
+        /// <param name="mapLevelData">level trong <see cref="MappingDataUI"/></param>
+        /// <param name="levelData">level trong <see cref="TowerUpgrade"/></param>
+        /// <param name="text">text</param>
+        private void UpdateData(TowerSO mapLevelData, TowerSO levelData, TextMeshProUGUI text)
         {
-            currentLevel.SetLevel(level.GetLevel);
-            currentLevel.SetHealth(level.GetHealth);
-            currentLevel.SetDamage(level.GetDamage);
-            currentLevel.SetAmmor(level.GetAmmor);
-            currentLevel.SetRequirements(level.GetRequirements);
-            text.text = content + level.GetLevel.ToString();
+            mapLevelData = levelData;
+            Debug.Log($"Map level data {mapLevelData.GetLevel}, {mapLevelData.GetDamage}, {mapLevelData.GetAmmor}");
+            foreach (var o in mapLevelData.GetRequirements)
+            {
+                Debug.Log("Requirement");
+                Debug.Log(o);
+            }
+            text.text = content + levelData.GetLevel.ToString();
             //Initialize more data in tower so
         }
 

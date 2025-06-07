@@ -19,4 +19,8 @@ MonoBehaviour:
     Damage: 293
     Ammor: 80
     RegenHeal: 0.525
-    requrement: []
+    requrement:
+    - item: {fileID: 11400000, guid: 94ce4bdd2cad347439e725587dbfc707, type: 2}
+      quantity: 1
+    - item: {fileID: 11400000, guid: ddba62a5a492eb7438473f706621182f, type: 2}
+      quantity: 1

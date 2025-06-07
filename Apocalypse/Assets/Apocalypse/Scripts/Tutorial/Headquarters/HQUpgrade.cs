@@ -63,8 +63,6 @@ namespace Game.Tutorial.Headquarters
                             level++;
                             nextLevel = level + 1;
                             UpgradeLevel(level);
-                            // Events.Instance.InvokeUpgradeEvent(towerSO.GetSprite);
-                            // Events.Instance.InvokeUpdateVisualEvent(level, nextLevel);
                         }
                     }
                 }

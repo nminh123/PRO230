@@ -104,7 +104,7 @@ namespace Game.Tutorial.Turret
                         HotBarManager.instance.TakeItem(item.itemSO, requirement.quantity);
                         sumRequirements -= requirement.quantity;
                         DisableItem(requirement);
-                        if (sumRequirements == 0)
+                        if (sumRequirements == 0 && level <= 10)
                         {
                             level++;
                             nextLevel = level + 1;

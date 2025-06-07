@@ -38,7 +38,7 @@ namespace Game.Tutorial.UI
 
         private void OnUpgradeButtonClick()
         {
-            upgradeButton.onClick.AddListener(() => TowerUpgrade.Instance.IteratorHotbar(TowerUpgrade.Instance.GetCurrentLevel.GetRequirements));
+            upgradeButton.onClick.AddListener(() => TowerUpgrade.Instance.IteratorHotbar(TowerUpgrade.Instance.cpyRequirements));
         }
 
         private void DisplayPopup()
